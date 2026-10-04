@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Viability Dashboard Pro — Free Feasibility Tool</title>
+<meta name="description" content="Free interactive business feasibility analysis in your browser: NPV, IRR, MIRR, PI, break-even, DSCR, Monte Carlo risk simulation, tornado sensitivity, interactive what-if and an auto action plan. ارزیابی رایگان توجیه‌پذیری کسب‌وکار با شبیه‌سازی ریسک مونت‌کارلو — بدون ثبت‌نام.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Business Viability Dashboard Pro">
+<meta property="og:description" content="Free interactive business feasibility tool: NPV, IRR, break-even, DSCR, Monte Carlo risk simulation, tornado sensitivity & auto action plan — کاملاً رایگان و بدون ثبت‌نام.">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Business Viability Dashboard Pro">
+<meta name="twitter:description" content="Free interactive business feasibility tool — NPV, IRR, Monte Carlo risk, action plan.">
+<meta name="theme-color" content="#0b1220">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2306b6d4'/%3E%3Crect x='20' y='55' width='14' height='30' fill='white'/%3E%3Crect x='43' y='35' width='14' height='50' fill='white'/%3E%3Crect x='66' y='20' width='14' height='65' fill='white'/%3E%3C/svg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;800&display=swap');
+*{box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
+body{margin:0;background:#0b1220;color:#e2e8f0}
+body.fa-mode,body.fa-mode *{font-family:'B Nazanin','Nazanin','Vazirmatn',Tahoma,serif !important}
+body.fa-mode{font-size:19px}
+header{background:linear-gradient(90deg,#06b6d4,#6366f1,#a855f7);padding:14px 16px 16px;text-align:center;color:#fff}
+.proprietary{display:inline-block;font-size:11px;letter-spacing:2px;font-weight:800;color:#e8e8e8;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.6);border-radius:99px;padding:4px 16px;text-shadow:0 1px 0 #fff,0 -1px 1px #000;box-shadow:inset 0 1px 2px rgba(255,255,255,.5),0 2px 4px rgba(0,0,0,.4)}
+body.fa-mode .proprietary{font-size:16px;letter-spacing:0}
+header h1{margin:8px 0 0;font-size:24px}
+#bizTitle{margin:4px 0 0;font-size:16px;font-weight:800;color:#fef08a;text-shadow:0 2px 4px rgba(0,0,0,.6)}
+body.fa-mode #bizTitle{font-size:22px}
+header p.sub{margin:6px 0 0;opacity:.92;font-size:13px}
+.bizrow{display:flex;justify-content:center;margin-top:10px}
+.bizrow input{max-width:420px;text-align:center;background:rgba(0,0,0,.35);border:1px solid #fff;color:#fff;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:700}
+body.fa-mode .bizrow input{font-size:18px}
+.langbar,.savebar{display:flex;justify-content:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.langbar button,.savebar button,.savebar select{padding:8px 18px;border-radius:99px;border:2px solid #fff;background:transparent;color:#fff;font-weight:800;cursor:pointer;font-size:13px}
+.langbar button.on{background:#fff;color:#4c1d95}
+.savebar button{background:rgba(255,255,255,.18)}
+.savebar select{background:#1e293b;max-width:170px}.savebar select option{color:#000}
+.wrap{max-width:1380px;margin:auto;padding:14px;display:grid;grid-template-columns:480px 1fr;gap:14px}
+body.fa-mode .wrap{direction:rtl}
+@media(max-width:980px){.wrap{grid-template-columns:1fr}}
+.card{background:#131e32;border:1px solid #2a3a55;border-radius:14px;padding:14px;margin-bottom:14px}
+.card h2{margin:0 0 6px;color:#38bdf8;font-size:17px;border-bottom:1px solid #2a3a55;padding-bottom:8px}
+body.fa-mode .card h2{font-size:22px}
+.desc{font-size:12px;color:#94a3b8;margin:0 0 8px;line-height:1.6}
+body.fa-mode .desc{font-size:16px}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+body.fa-mode table{font-size:16px}
+th{color:#94a3b8;text-align:left;padding:6px 4px;font-size:12px;overflow:hidden}
+body.fa-mode th{text-align:right;font-size:14px}
+td{padding:4px}
+td input{width:100%;min-width:0;padding:7px 6px;border-radius:7px;border:1px solid #3b4f6e;background:#0b1220;color:#fff;text-align:right;font-size:12.5px;letter-spacing:.2px}
+td input.cost{font-variant-numeric:tabular-nums;font-size:12px}
+body.fa-mode td input{font-size:15px}
+th.c12,td.c12{width:170px}
+th.cnp,td.cnp{width:212px}
+th.cnq,td.cnq{width:85px}
+.cinfl{display:none}
+table.pinfl .cinfl{display:table-cell;width:64px}
+table.pinfl th.c12,table.pinfl td.c12{width:118px}
+.cinq{display:none}
+table.pgrow .cinq{display:table-cell;width:64px}
+table.pgrow th.cnp,table.pgrow td.cnp{width:150px}
+.del{background:#ef4444;border:0;color:#fff;border-radius:6px;padding:6px 8px;cursor:pointer}
+.dup{background:#475569;border:0;color:#fff;border-radius:6px;padding:6px 8px;cursor:pointer;margin-right:3px}
+body.fa-mode .dup{margin-right:0;margin-left:3px}
+.add{background:#1d4ed8;border:0;color:#fff;border-radius:8px;padding:9px;width:100%;margin-top:8px;cursor:pointer;font-weight:700}
+body.fa-mode .add{font-size:18px}
+.add.inl{width:auto;padding:8px 16px;margin-top:0}
+#b_undo{background:#475569}
+.apply{background:#059669;border:0;color:#fff;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:700;margin:4px 4px 0 0;width:auto;font-size:13px}
+body.fa-mode .apply{font-size:17px}
+.apply2{background:#7c3aed;border:0;color:#fff;border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:700;margin:4px 4px 0 0;width:auto;font-size:13px}
+body.fa-mode .apply2{font-size:17px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.wchip{background:#1e293b;border:1px solid #3b4f6e;color:#e2e8f0;border-radius:99px;padding:6px 12px;cursor:pointer;font-size:12px;font-weight:700}
+body.fa-mode .wchip{font-size:15px}
+.wchip:hover{background:#334155}
+.mcbar{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.mcbar select{background:#1e293b;color:#fff;border:1px solid #3b4f6e;border-radius:8px;padding:7px 10px;font-weight:700}
+.mcbar select option{color:#000}
+.mcbar span{font-size:12px;color:#94a3b8}
+body.fa-mode .mcbar span{font-size:15px}
+.gd{color:#4ade80}
+.bd{color:#f87171}
+.yd{color:#facc15}
+.errbanner{display:none;background:#7f1d1d;border:2px solid #ef4444;color:#fff;padding:10px 14px;border-radius:10px;margin:10px auto;max-width:1340px;font-size:13px;font-weight:700}
+.warnbox{background:#451a03;border:1px solid #f59e0b;border-radius:10px;padding:8px;margin-top:8px;font-size:12.5px;line-height:1.7;display:none}
+label{font-size:12px;color:#94a3b8;display:block;margin:8px 0 3px}
+body.fa-mode label{font-size:15px}
+input.num{width:100%;padding:8px;border-radius:8px;border:1px solid #3b4f6e;background:#0b1220;color:#fff;text-align:right;font-variant-numeric:tabular-nums}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.total{text-align:right;color:#5eead4;margin-top:6px;font-weight:700;word-break:break-all}
+.avgbox{background:#0b1220;border:1px dashed #38bdf8;border-radius:10px;padding:8px;margin-top:8px;font-size:13px;line-height:1.8;word-break:break-all}
+body.fa-mode .avgbox{font-size:16px}
+.beTrack{height:14px;background:#0b1220;border:1px solid #3b4f6e;border-radius:99px;overflow:hidden;margin-top:6px}
+.beFill{height:100%;width:0;background:linear-gradient(90deg,#ef4444,#facc15,#22c55e);transition:width .5s}
+.btn-calc{background:linear-gradient(90deg,#22c55e,#06b6d4);border:0;color:#04220f;font-weight:800;font-size:16px;padding:13px;border-radius:10px;width:100%;cursor:pointer;margin-top:10px}
+body.fa-mode .btn-calc{font-size:20px}
+.autoRow{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:#94a3b8}
+body.fa-mode .autoRow{font-size:16px}
+.autoRow input{width:18px;height:18px;accent-color:#22c55e}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.kpi{background:#0b1220;border:1px solid #2a3a55;border-radius:10px;padding:10px;text-align:center}
+.kpi small{color:#94a3b8;font-size:11px;display:block}
+body.fa-mode .kpi small{font-size:14px}
+.kpi strong{font-size:14px;display:block;margin-top:4px;word-break:break-all}
+.kpi strong.good{color:#4ade80}
+.kpi strong.bad{color:#f87171}
+.kpi strong.info{color:#e2e8f0}
+.verdict{border-radius:10px;padding:14px;text-align:center;font-weight:800;margin-top:10px;background:#334155}
+body.fa-mode .verdict{font-size:20px}
+.bar{height:16px;background:#0b1220;border:1px solid #3b4f6e;border-radius:99px;overflow:hidden}
+.fill{height:100%;width:0;background:linear-gradient(90deg,#ef4444,#facc15,#22c55e);transition:width .5s}
+canvas{width:100%;background:#0b1220;border:1px solid #2a3a55;border-radius:10px}
+.flow{overflow-x:auto}
+table.flowtable{table-layout:auto}
+table.flowtable th,table.flowtable td{text-align:right;padding:7px;border-bottom:1px solid #2a3a55;white-space:nowrap}
+ul.report,ul.adv,ol.plan{font-size:13.5px;line-height:1.9;margin:0;padding-left:18px}
+body.fa-mode ul.report,body.fa-mode ul.adv,body.fa-mode ol.plan{direction:rtl;text-align:right;padding-right:18px;padding-left:0;font-size:17px}
+.advBox{border:2px solid #a855f7;background:#1a1230}
+.pathBox{background:#0b1220;border:1px solid #2a3a55;border-radius:10px;padding:10px;margin-top:8px}
+.pathBox b.t{color:#5eead4}
+.credit{margin-top:10px;font-size:11px;color:#cbd5e1;letter-spacing:.5px}
+body.fa-mode .credit{font-size:14px}
+.sens{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px}
+body.fa-mode .sens{direction:rtl;font-size:15px}
+.sens div{background:#0b1220;border:1px solid #2a3a55;border-radius:8px;padding:8px;word-break:break-all}
+@page{margin:12mm}
+@media print{
+body{background:#fff !important;color:#000 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+header{background:#fff !important;color:#000 !important;border-bottom:3px solid #000}
+header h1,header p{color:#000 !important}
+.proprietary{background:#fff !important;color:#000 !important;border:2px solid #000 !important;text-shadow:none;box-shadow:none}
+#bizTitle{color:#000 !important;text-shadow:none}
+.bizrow,.langbar,.savebar,.add,.btn-calc,.autoRow,#advBtns,#undoRow,.chips,.mcbar,.errbanner,#b_print,#b_csv,.del,.dup{display:none !important}
+.wrap{display:block !important;max-width:100%}
+.card{background:#fff !important;color:#000 !important;border:2px solid #000 !important;border-radius:0}
+.card h2{color:#000 !important;border-bottom:2px solid #000 !important;font-size:16pt !important;font-weight:900}
+.desc,.kpi small,label,.mcbar span{color:#111 !important}
+.kpi{background:#fff !important;border:1.5px solid #000 !important}
+.kpi strong,.total,.verdict,#stext,ul.report,.avgbox,.sens div,table,th,td,.pathBox,ol.plan{color:#000 !important}
+.warnbox{display:none !important;background:#fff !important;color:#000 !important;border:2px solid #000 !important}
+.warnbox:not(:empty){display:block !important}
+.avgbox,.sens div,.pathBox{background:#f2f2f2 !important;border:1.5px solid #000 !important;font-weight:700;color:#000 !important}
+table.flowtable th,table.flowtable td{border-bottom:1.5px solid #000 !important}
+.verdict{background:#e5e5e5 !important;border:2px solid #000 !important;font-size:14pt !important}
+.bar,.beTrack{border:1.5px solid #000 !important}
+.credit{color:#000 !important;font-weight:800;border-top:2px solid #000;margin-top:12px;padding-top:8px}
+canvas{max-height:200px;border:1.5px solid #000 !important}
+}
+</style>
+</head>
+<body>
+<noscript><div style="background:#7f1d1d;color:#fff;padding:12px;text-align:center;font-weight:800">⚠️ JavaScript is disabled / جاوااسکریپت غیرفعال است — لطفاً JavaScript مرورگر را فعال کنید.</div></noscript>
+<header>
+<div class="proprietary" id="propTop">© PROPRIETARY OF HAMIDREZA KHALATBARI</div>
+<h1 id="t_title">Business Viability Dashboard Pro</h1>
+<div id="bizTitle"></div>
+<p class="sub" id="t_sub">Tested</p>
+<div class="bizrow"><input id="bizName" maxlength="80" placeholder="Business name — نام کسب‌وکار"></div>
+<div class="langbar">
+<button type="button" id="bEN" class="on">English</button>
+<button type="button" id="bFA">فارسی</button>
+</div>
+<div class="savebar">
+<select id="curSel"><option value="$">$ USD</option><option value="€">€ EUR</option><option value="£">£ GBP</option><option value="تومان">تومان</option><option value="AED">AED</option><option value="">—</option></select>
+<select id="decSel"><option value="2">2 decimals</option><option value="0">0 decimals</option></select>
+<button type="button" id="b_save">💾 Save</button>
+<button type="button" id="b_load">📂 Load</button>
+<button type="button" id="b_reset">♻️ Reset</button>
+<button type="button" id="b_share">📤 Share</button>
+<input type="file" id="filePick" accept=".json,application/json" style="display:none">
+</div>
+<div class="credit" id="creditTop">Software created by Hamidreza Khalatbari</div>
+</header>
+<div class="errbanner" id="errBanner"></div>
+<div class="wrap">
+<div>
+<div class="card">
+<h2 id="h_c1">1. CAPEX</h2>
+<p class="desc" id="d_c1">One-time costs.</p>
+<table id="capexT"><thead><tr><th id="th_ci">Item</th><th class="c12" id="th_cc">Cost</th><th style="width:70px"></th></tr></thead><tbody></tbody></table>
+<button type="button" class="add" id="b_addC">+ Add</button>
+<div class="total" id="capexTotal">0</div>
+<div class="grid2"><div><label id="l_eq">Equity %</label><input id="equityPct" class="num" inputmode="decimal" autocomplete="off" value="100"></div><div><label id="l_loan">Loan % /yr</label><input id="loanRate" class="num" inputmode="decimal" autocomplete="off" value="12"></div></div>
+</div>
+<div class="card">
+<h2 id="h_c2">2. Fixed</h2>
+<p class="desc" id="d_c2">Rent, salaries.</p>
+<table id="opexT"><thead><tr><th id="th_fi">Item</th><th class="c12" id="th_fm">$/mo</th><th class="cinfl" id="th_fi2">Infl</th><th style="width:70px"></th></tr></thead><tbody></tbody></table>
+<button type="button" class="add" id="b_addF">+ Add</button>
+<div class="total" id="opexTotal">0</div>
+</div>
+<div class="card">
+<h2 id="h_c3">3. Sales</h2>
+<p class="desc" id="d_c3">Price x Qty. Qty grows by Growth %; each price grows by its own rate.</p>
+<table id="prodT"><thead><tr><th class="cnp" id="th_pn">Product</th><th class="cnq" id="th_pp">Price</th><th class="cnq" id="th_pq">Qty/mo</th><th class="cinq" id="th_pp2">Gr %</th><th style="width:70px"></th></tr></thead><tbody></tbody></table>
+<button type="button" class="add" id="b_addP">+ Add</button>
+<div class="total" id="prodTotal">0</div>
+<div class="avgbox" id="salesInfo">-</div>
+<div class="beTrack"><div class="beFill" id="beFill"></div></div>
+<div class="warnbox" id="warnBox"></div>
+</div>
+<div class="card">
+<h2 id="h_c4">4. Variable</h2>
+<p class="desc" id="d_c4">Materials, packaging.</p>
+<table id="varT"><thead><tr><th id="th_vi">Item</th><th class="c12" id="th_vm">$/mo</th><th class="cinfl" id="th_vi2">Infl</th><th style="width:70px"></th></tr></thead><tbody></tbody></table>
+<button type="button" class="add" id="b_addV">+ Add</button>
+<div class="total" id="varTotal">0</div>
+<div class="avgbox" id="avgInfo">-</div>
+</div>
+<div class="card">
+<h2 id="h_c5">5. Assumptions + Targets</h2>
+<div class="grid2">
+<div><label id="l_y">Years</label><input id="years" class="num" data-int="1" inputmode="numeric" autocomplete="off" value="5"></div>
+<div><label id="l_d">Discount %</label><input id="disc" class="num" inputmode="decimal" autocomplete="off" value="15"></div>
+<div><label id="l_g">Growth % (qty)</label><input id="growth" class="num" inputmode="decimal" autocomplete="off" value="10"></div>
+<div><label id="l_c">Cost inflation %</label><input id="cgrow" class="num" inputmode="decimal" autocomplete="off" value="5"></div>
+<div><label id="l_t">Tax %</label><input id="tax" class="num" inputmode="decimal" autocomplete="off" value="0"></div>
+<div><label id="l_w">WC %</label><input id="wcp" class="num" inputmode="decimal" autocomplete="off" value="5"></div>
+<div><label id="l_tp">Target profit/mo</label><input id="targetProfit" class="num" inputmode="decimal" autocomplete="off" value="2000"></div>
+<div><label id="l_tm">Target margin (CM) %</label><input id="targetMargin" class="num" inputmode="decimal" autocomplete="off" value="30"></div>
+</div>
+<label id="l_pg" style="margin-top:10px">Price growth mode</label>
+<div class="grid2">
+<label class="autoRow" style="margin-top:2px;cursor:pointer"><input type="radio" name="pgm" id="pgG" checked><span id="l_pgG">Fixed % for all</span></label>
+<label class="autoRow" style="margin-top:2px;cursor:pointer"><input type="radio" name="pgm" id="pgP"><span id="l_pgP">Per product</span></label>
+</div>
+<label id="l_pgv">Fixed price growth %/yr</label>
+<input id="pgGlobal" class="num" inputmode="decimal" autocomplete="off" value="0">
+<label class="autoRow" style="cursor:pointer"><input type="checkbox" id="perInfl"><span id="l_pi">Per-item cost inflation (Fixed & Variable)</span></label>
+<button type="button" class="btn-calc" id="b_calc">Calculate</button>
+<div class="autoRow"><input type="checkbox" id="autoChk" checked><span id="t_auto">Auto</span></div>
+<button type="button" class="add" style="background:#334155" id="b_demo">Demo</button>
+</div>
+</div>
+<div>
+<div class="card"><h2 id="h_kpi">KPI</h2><div class="kpis">
+<div class="kpi"><small id="k1">CAPEX</small><strong id="kCapex">—</strong></div>
+<div class="kpi"><small id="k2">Revenue/mo</small><strong id="kRev">—</strong></div>
+<div class="kpi"><small id="k3">Units/mo</small><strong id="kUnits">—</strong></div>
+<div class="kpi"><small id="k4">Avg Cost/u</small><strong id="kAvg">—</strong></div>
+<div class="kpi"><small id="k5">Profit/mo</small><strong id="kProf">—</strong></div>
+<div class="kpi"><small id="k6">Margin</small><strong id="kMarg">—</strong></div>
+<div class="kpi"><small id="k7">Break-Even Rev.</small><strong id="kBE">—</strong></div>
+<div class="kpi"><small id="k8">Safety</small><strong id="kMOS">—</strong></div>
+<div class="kpi"><small id="k9">NPV</small><strong id="kNPV">—</strong></div>
+<div class="kpi"><small id="k10">IRR</small><strong id="kIRR">—</strong></div>
+<div class="kpi"><small id="k11">ROI</small><strong id="kROI">—</strong></div>
+<div class="kpi"><small id="k12">Payback</small><strong id="kPB">—</strong></div>
+<div class="kpi"><small id="k13">DSCR</small><strong id="kDSCR">—</strong></div>
+<div class="kpi"><small id="k14">Worst-yr flow</small><strong id="kWF">—</strong></div>
+<div class="kpi"><small id="k15">PI</small><strong id="kPIv">—</strong></div>
+<div class="kpi"><small id="k16">MIRR</small><strong id="kMIRRv">—</strong></div>
+<div class="kpi"><small id="k17">Disc. payback</small><strong id="kDPBv">—</strong></div>
+</div>
+<div id="verdict" class="verdict">—</div>
+<div class="bar" style="margin-top:10px"><div id="sfill" class="fill"></div></div><div id="stext"></div></div>
+<div class="card advBox"><h2 id="t_adv">🎯 Advisor</h2>
+<div id="advisor"><p>...</p></div>
+<div id="advBtns"></div>
+<div id="undoRow" style="display:none"><button type="button" class="add" id="b_undo">↩ Undo</button></div>
+</div>
+<div class="card"><h2 id="h_br">Sales Breakdown</h2><div class="flow"><table class="flowtable" id="prodBreak"><thead><tr><th id="bh1">Product</th><th id="bh2">Price</th><th id="bh3">Qty</th><th id="bh4">Revenue</th><th id="bh5">Share</th></tr></thead><tbody></tbody></table></div></div>
+<div class="card"><h2 id="h_cf">Cash Flow</h2><canvas id="ch1" height="200"></canvas><div style="height:8px"></div><canvas id="ch2" height="150"></canvas>
+<div class="flow"><table class="flowtable" id="flowT"><thead><tr><th id="fh1">Y</th><th id="fh2">Revenue</th><th id="fh3">Fixed</th><th id="fh4">Variable</th><th id="fh5">Debt+Tax</th><th id="fh6">Net</th><th id="fh7">Cumul.</th></tr></thead><tbody></tbody></table></div></div>
+<div class="card"><h2 id="h_se">Scenarios</h2><div class="sens" id="sens"></div></div>
+<div class="card"><h2 id="h_mc">🎲 Monte Carlo</h2>
+<div class="mcbar"><select id="mcN"><option value="500">500</option><option value="1000" selected>1000</option><option value="3000">3000</option></select><span id="mcNlbl">Runs</span><button type="button" class="add inl" id="b_mc">🎲 Re-run</button></div>
+<canvas id="mcC" height="220"></canvas>
+<div class="avgbox" id="mcStats">Press Calculate</div>
+</div>
+<div class="card"><h2 id="h_tor">🌪 Tornado</h2><canvas id="tornC" height="260"></canvas></div>
+<div class="card"><h2 id="h_rp">Report</h2><ul class="report" id="report"><li>...</li></ul>
+<div class="credit" id="creditBottom">Software created by Hamidreza Khalatbari — © Proprietary of Hamidreza Khalatbari</div>
+<div style="display:flex;gap:8px;margin-top:10px"><button type="button" class="add" id="b_print">🖨️ Print</button><button type="button" class="add" style="background:#059669" id="b_csv">CSV</button></div>
+</div>
+</div>
+</div>
+<script>
+window.onerror=function(m,s,l){var b=document.getElementById("errBanner");if(b){b.style.display="block";b.textContent="⚠️ Script error: "+m+" (line "+l+") — please send this text";}if(window.console)console.error(m,"line",l);return false;};
+</script>
+<script>
+var LANG="en",CUR="$",DEC=2,lastFlows=[],lastRows=[],lastKPIs=null,hasCalculated=false,recalcTimer=null,isFormatting=false,lastPointer=false,undoStack=[];
+window._recPriceMult=null;window._recQtyMult=null;window._recBoth=null;window._recPractical=null;window._advM=null;window._advBase=null;window._mc=null;window._torn=null;
+var HEAD="Software created by Hamidreza Khalatbari";
+var NL=String.fromCharCode(10);
+var BOM=String.fromCharCode(65279);
+var STR={
+en:{title:"Business Viability Dashboard Pro",sub:"Best-practice advisor • Practical price & volume",prop:"© PROPRIETARY OF HAMIDREZA KHALATBARI",credit:"Software created by Hamidreza Khalatbari",creditFull:"Software created by Hamidreza Khalatbari — © Proprietary of Hamidreza Khalatbari",dec2:"2 decimals",dec0:"0 decimals",c1:"1. Initial Investment (CAPEX)",d1:"One-time costs: machinery, deposit, renovation.",ci:"Item",cc:"Cost",eq:"Equity %",loan:"Loan % /yr",c2:"2. Monthly Fixed Costs",d2:"Rent, salaries, insurance.",fm:"$/mo",c3:"3. Sales Forecast",d3:"Price x Qty. Qty grows by Growth %; each price grows by its own rate.",pn:"Product",pp:"Price",pq:"Qty/mo",c4:"4. Monthly Variable Costs",d4:"Materials, packaging, delivery.",c5:"5. Assumptions + Targets",y:"Years (1-10)",di:"Discount %",gr:"Growth % (qty)",inf:"Cost inflation %/yr",tx:"Tax % (0-100)",wc:"WC % revenue",tp:"Target profit/mo",tm:"Target margin (CM) %",pg:"Price growth mode",pgG:"Fixed % for all",pgP:"Per product",pgv:"Fixed price growth %/yr (blank per-product cells use this)",pgrHdr:"Gr %/yr",pi:"Per-item cost inflation (Fixed & Variable) — blank = global rate",inflHdr:"Infl %/yr",k13:"DSCR",k14:"Worst-yr flow",k15:"PI",k16:"MIRR",k17:"Disc. payback",mcTitle:"🎲 Monte Carlo Risk Simulation",torTitle:"🌪 Sensitivity Tornado (±10%)",mcRun:"🎲 Re-run",mcNlbl:"Runs",mcEmpty:"Press Calculate to run the simulation.",torEmpty:"Press Calculate to draw the tornado.",mcMean:"Mean NPV",mcMed:"Median",mcP5:"P5 (pessimistic)",mcP95:"P95 (optimistic)",mcLoss:"Loss probability",mcStd:"Std deviation",torNames:["Avg price","Units/mo","Variable cost","Fixed cost","CAPEX","Discount rate"],share:"📤 Share",shareCopied:"Link copied: ",sharePrompt:"Copy this link:",undo:"↩ Undo last step",calc:"Calculate Full Feasibility",auto:"Auto-recalculate on any change",demo:"Load Demo Data",addC:"+ Add CAPEX Item",addF:"+ Add Fixed Cost",addP:"+ Add Product",addV:"+ Add Variable Cost",kpi:"KPI Dashboard",k1:"CAPEX",k2:"Revenue/mo",k3:"Units/mo",k4:"Avg Cost/u",k5:"Profit/mo",k6:"Margin",k7:"Break-Even Rev.",k8:"Safety",k9:"NPV",k10:"IRR",k11:"ROI",k12:"Payback",pc:"Press Calculate",adv:"🎯 Advisor Pro — Risks, Monte Carlo, What-if & Action Plan",br:"Sales Breakdown",bh:["Product","Price","Qty","Revenue","Share"],cf:"Cash Flow",fh:["Y","Revenue","Fixed","Variable","Debt+Tax","Net","Cumul."],se:"Scenario Comparison (NPV)",sc:["Base","Sales -15%","Costs +15%","Sales +15%"],rp:"Report",save:"💾 Save",load:"📂 Load",reset:"♻️ Reset",phI:"Item",phP:"Product",bizPh:"Business name — نام کسب‌وکار"},
+fa:{title:"داشبورد حرفه‌ای ارزیابی توجیه‌پذیری",sub:"مشاور کاربردی • قیمت و حجم عملی",prop:"© مالکیت اختصاصی حمیدرضا خلعتبری",credit:"نرم‌افزار ساخته حمیدرضا خلعتبری",creditFull:"نرم‌افزار ساخته حمیدرضا خلعتبری — © مالکیت اختصاصی حمیدرضا خلعتبری",dec2:"۲ رقم اعشار",dec0:"بدون اعشار",c1:"۱. سرمایه‌گذاری اولیه",d1:"هزینه‌های یک‌باره: ماشین‌آلات، ودیعه، بازسازی.",ci:"قلم",cc:"هزینه",eq:"آورده ٪",loan:"بهره وام ٪/سال",c2:"۲. هزینه‌های ثابت ماهانه",d2:"اجاره، حقوق، بیمه.",fm:"مبلغ/ماه",c3:"۳. پیش‌بینی فروش",d3:"قیمت × تعداد. تعداد با نرخ رشد کلی رشد می‌کند و قیمت هر محصول با نرخ خودش.",pn:"محصول",pp:"قیمت",pq:"تعداد/ماه",c4:"۴. هزینه‌های متغیر ماهانه",d4:"مواد اولیه، بسته‌بندی، ارسال.",c5:"۵. فرضیات + اهداف",y:"سال‌ها (۱-۱۰)",di:"تنزیل ٪",gr:"رشد فروش ٪ (تعداد)",inf:"تورم هزینه ٪/سال",tx:"مالیات ٪",wc:"سرمایه در گردش ٪",tp:"سود هدف ماهانه",tm:"حاشیه هدف (سهم) ٪",pg:"روش رشد قیمت",pgG:"نرخ ثابت برای همه",pgP:"نرخ جداگانه هر محصول",pgv:"رشد ثابت قیمت ٪/سال (خانه‌های خالی از این استفاده می‌کنند)",pgrHdr:"رشد قیمت ٪/سال",pi:"تورم جداگانه هر قلم هزینه (ثابت و متغیر) — خالی = نرخ سراسری",inflHdr:"تورم ٪/سال",k13:"پوشش قسط (DSCR)",k14:"بدترین سال",k15:"شاخص سودآوری",k16:"MIRR",k17:"بازگشت تنزیل‌شده",mcTitle:"🎲 شبیه‌سازی ریسک مونت‌کارلو",torTitle:"🌪 تحلیل حساسیت تورنادو (±۱۰٪)",mcRun:"🎲 اجرای مجدد",mcNlbl:"تعداد اجرا",mcEmpty:"برای اجرای شبیه‌سازی، دکمه محاسبه را بزنید.",torEmpty:"برای رسم تورنادو، دکمه محاسبه را بزنید.",mcMean:"میانگین NPV",mcMed:"میانه",mcP5:"صدک ۵ (بدبینانه)",mcP95:"صدک ۹۵ (خوش‌بینانه)",mcLoss:"احتمال زیان",mcStd:"انحراف معیار",torNames:["قیمت میانگین","تعداد فروش","هزینه متغیر","هزینه ثابت","سرمایه اولیه","نرخ تنزیل"],share:"📤 اشتراک‌گذاری",shareCopied:"لینک کپی شد: ",sharePrompt:"این لینک را کپی کنید:",undo:"↩ بازگردانی مرحله قبل",calc:"محاسبه امکان‌سنجی کامل",auto:"محاسبه خودکار با هر تغییر",demo:"بارگذاری داده نمونه",addC:"+ افزودن قلم سرمایه‌ای",addF:"+ افزودن هزینه ثابت",addP:"+ افزودن محصول",addV:"+ افزودن هزینه متغیر",kpi:"شاخص‌های کلیدی",k1:"سرمایه اولیه",k2:"درآمد/ماه",k3:"واحد/ماه",k4:"میانگین هزینه",k5:"سود/ماه",k6:"حاشیه سود",k7:"سربه‌سر (درآمد)",k8:"حاشیه امنیت",k9:"ارزش فعلی (NPV)",k10:"نرخ بازده (IRR)",k11:"بازده (ROI)",k12:"بازگشت سرمایه",pc:"برای محاسبه، دکمه سبز را بزنید",adv:"🎯 مشاور حرفه‌ای — ریسک، مونت‌کارلو، سناریو و برنامه اقدام",br:"تفکیک فروش",bh:["محصول","قیمت","تعداد","درآمد","سهم"],cf:"جریان نقدی",fh:["سال","درآمد","ثابت","متغیر","قسط+مالیات","خالص","انباشته"],se:"مقایسه سناریوها (ارزش فعلی)",sc:["پایه","فروش ۱۵٪-","هزینه ۱۵٪+","فروش ۱۵٪+"],rp:"گزارش ارزیابی",save:"💾 ذخیره",load:"📂 باز کردن",reset:"♻️ پاک‌سازی",phI:"نام قلم...",phP:"نام محصول...",bizPh:"نام کسب‌وکار را وارد کنید..."}
+};
+function esc(s){return String(s==null?"":s).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split(String.fromCharCode(34)).join("&quot;").split(String.fromCharCode(39)).join("&#39;");}
+function cur(){return CUR?(" "+CUR):"";}
+function digitsOnly(s){if(s.length===0)return false;var st=(s.charAt(0)==="-")?1:0;if(st===1&&s.length===1)return false;var i,c;for(i=st;i<s.length;i++){c=s.charAt(i);if(c<"0"||c>"9")return false;}return true;}
+function toEn(s){s=String(s==null?"":s);
+var FA="۰۱۲۳۴۵۶۷۸۹",AR="٠١٢٣٤٥٦٧٨٩",i;
+for(i=0;i<10;i++){s=s.split(FA.charAt(i)).join(String(i));s=s.split(AR.charAt(i)).join(String(i));}
+s=s.split("٬").join(",").split("٫").join(".").split("−").join("-");
+s=s.split(" ").join("").split(String.fromCharCode(160)).join("").split(String.fromCharCode(8239)).join("");
+var lc=s.lastIndexOf(","),ld=s.lastIndexOf(".");
+if(lc>-1&&ld>-1){
+if(lc>ld){s=s.split(".").join("");var ci=s.lastIndexOf(",");s=s.slice(0,ci)+"."+s.slice(ci+1);}
+else{s=s.split(",").join("");}
+}else if(lc>-1){
+var p=s.split(","),fp=p[p.length-1];
+if(p.length>=2&&p.length<=4&&fp.length===3&&digitsOnly(fp)){s=s.split(",").join("");}
+else if(p.length===2&&fp.length>=1&&fp.length<=2&&digitsOnly(p[0])&&digitsOnly(fp)){s=p[0]+"."+fp;}
+else{s=s.split(",").join("");}
+}
+return s.trim();}
+function parseNum(v){var n=parseFloat(toEn(v));return isNaN(n)?0:n;}
+function groupInt(str){var out="",cnt=0,i;for(i=str.length-1;i>=0;i--){out=str.charAt(i)+out;cnt++;if(cnt%3===0&&i>0)out=","+out;}return out;}
+function fmt(n,dec){if(n===null||n===undefined||typeof n!=="number"||!isFinite(n))return "--";
+if(dec===undefined||dec===null)dec=DEC;
+dec=Math.max(0,Math.min(4,Math.round(dec)));
+var neg=n<0,a=Math.abs(n).toFixed(dec),parts=a.split(".");
+var ip=groupInt(parts[0]);
+var o=(neg?"-":"")+(dec===0?ip:ip+"."+parts[1]);
+if(LANG==="fa"){var D="۰۱۲۳۴۵۶۷۸۹",o2="",i2,ch;for(i2=0;i2<o.length;i2++){ch=o.charAt(i2);if(ch>="0"&&ch<="9")o2+=D.charAt(+ch);else o2+=ch;}o=o2.split(",").join("٬").split(".").join("٫");}
+return o;}
+function money(n){return fmt(n,DEC)+cur();}
+function clampNum(raw,a,b){var v=parseNum(raw);if(!isFinite(v))v=a;return Math.min(b,Math.max(a,v));}
+function T(k){return STR[LANG][k];}
+function round99(x){if(!(x>0))return x;var r=Math.ceil(x)-0.01;if(r<x)r=Math.ceil(x+1)-0.01;return Math.round(r*100)/100;}
+function bizName(){var el=document.getElementById("bizName");return el?el.value.trim():"";}
+function refreshBiz(){var n=bizName();document.getElementById("bizTitle").textContent=n;}
+function safeName(){var n=bizName(),out="",i,ch,cc;
+for(i=0;i<n.length;i++){ch=n.charAt(i);cc=n.charCodeAt(i);
+if((ch>="a"&&ch<="z")||(ch>="A"&&ch<="Z")||(ch>="0"&&ch<="9")||ch==="-"||ch==="_"||(cc>=1536&&cc<=1791))out+=ch;else out+="-";}
+while(out.indexOf("--")>=0)out=out.split("--").join("-");
+if(out.charAt(0)==="-")out=out.slice(1);
+if(out.charAt(out.length-1)==="-")out=out.slice(0,out.length-1);
+if(out.length>40)out=out.slice(0,40);
+return out||"business-project";}
+function stripHead(t){if(t.slice(0,HEAD.length)!==HEAD)return t;t=t.slice(HEAD.length);
+while(t.length>0){var c=t.charAt(0);if(c===" "||c===NL||c===String.fromCharCode(13)||c===String.fromCharCode(9))t=t.slice(1);else break;}
+return t;}
+function lastRow(tid){var tb=document.querySelector("#"+tid+" tbody");return tb?tb.lastElementChild:null;}
+function perInflOn(){var el=document.getElementById("perInfl");return !!(el&&el.checked);}
+function priceMode(){var el=document.getElementById("pgP");return (el&&el.checked)?"p":"g";}
+function globalPGR(){return clampNum(gv("pgGlobal"),-50,200);}
+function mcCount(){var el=document.getElementById("mcN");var n=el?parseInt(el.value,10):1000;if(!(n>0))n=1000;return n;}
+function togglePerInfl(){var on=perInflOn();
+document.getElementById("opexT").classList.toggle("pinfl",on);
+document.getElementById("varT").classList.toggle("pinfl",on);
+scheduleRecalc();}
+function togglePgMode(){document.getElementById("prodT").classList.toggle("pgrow",priceMode()==="p");scheduleRecalc();}
+function updateUndo(){var row=document.getElementById("undoRow"),btn=document.getElementById("b_undo");
+if(!row||!btn)return;
+if(undoStack.length>0){row.style.display="block";btn.textContent=T("undo")+" ("+fmt(undoStack.length,0)+")";}
+else{row.style.display="none";btn.textContent=T("undo");}}
+function snapshotProducts(){var a=[],rs=document.querySelectorAll("#prodT tbody tr"),i,ins;
+for(i=0;i<rs.length;i++){ins=rs[i].querySelectorAll("input");
+if(ins.length>=4){var r=null;
+if(ins[3].value&&ins[3].value.trim()!=="")r=clampNum(ins[3].value,-50,200);
+a.push({name:ins[0].value,price:parseNum(ins[1].value),qty:parseNum(ins[2].value),r:r});}}
+return a;}
+function pushUndo(){undoStack.push(snapshotProducts());if(undoStack.length>25)undoStack.shift();updateUndo();}
+function restoreProducts(snap){var tb=document.querySelector("#prodT tbody");if(!tb)return;
+tb.innerHTML="";var i,tr,ig;
+for(i=0;i<snap.length;i++){tr=addProduct(snap[i].name,snap[i].price,snap[i].qty);
+if(tr&&snap[i].r!==null&&snap[i].r!==undefined){ig=tr.children[3].querySelector("input");if(ig)ig.value=fmt(snap[i].r,DEC);}}
+formatAllInputs();sums();calculate(true);}
+function doUndo(){if(!undoStack.length)return;var snap=undoStack.pop();updateUndo();restoreProducts(snap);}
+function doShare(){var url=location.href,title=document.title,txt=(LANG==="fa")?"داشبورد ارزیابی توجیه‌پذیری کسب‌وکار":"Business Viability Dashboard Pro";
+if(navigator.share){navigator.share({title:title,text:txt,url:url}).catch(function(){});return;}
+if(navigator.clipboard&&navigator.clipboard.writeText){
+navigator.clipboard.writeText(url).then(function(){alert(T("shareCopied")+url);}).catch(function(){prompt(T("sharePrompt"),url);});
+return;}
+prompt(T("sharePrompt"),url);}
+function setLang(l){LANG=l;var d=STR[l];
+document.body.classList.toggle("fa-mode",l==="fa");document.documentElement.lang=l==="fa"?"fa":"en";document.documentElement.dir=l==="fa"?"rtl":"ltr";
+document.getElementById("bEN").className=l==="en"?"on":"";document.getElementById("bFA").className=l==="fa"?"on":"";
+document.getElementById("t_title").textContent=d.title;document.getElementById("t_sub").textContent=d.sub;
+document.getElementById("propTop").textContent=d.prop;document.getElementById("creditTop").textContent=d.credit;document.getElementById("creditBottom").textContent=d.creditFull;
+document.getElementById("bizName").placeholder=d.bizPh;
+var ds=document.getElementById("decSel");ds.options[0].text=d.dec2;ds.options[1].text=d.dec0;
+document.getElementById("h_c1").textContent=d.c1;document.getElementById("d_c1").textContent=d.d1;
+document.getElementById("th_ci").textContent=d.ci;document.getElementById("th_cc").textContent=d.cc;
+document.getElementById("l_eq").textContent=d.eq;document.getElementById("l_loan").textContent=d.loan;
+document.getElementById("h_c2").textContent=d.c2;document.getElementById("d_c2").textContent=d.d2;document.getElementById("th_fi").textContent=d.ci;document.getElementById("th_fm").textContent=d.fm;document.getElementById("th_fi2").textContent=d.inflHdr;
+document.getElementById("h_c3").textContent=d.c3;document.getElementById("d_c3").textContent=d.d3;
+document.getElementById("th_pn").textContent=d.pn;document.getElementById("th_pp").textContent=d.pp;document.getElementById("th_pq").textContent=d.pq;document.getElementById("th_pp2").textContent=d.pgrHdr;
+document.getElementById("h_c4").textContent=d.c4;document.getElementById("d_c4").textContent=d.d4;document.getElementById("th_vi").textContent=d.ci;document.getElementById("th_vm").textContent=d.fm;document.getElementById("th_vi2").textContent=d.inflHdr;
+document.getElementById("h_c5").textContent=d.c5;document.getElementById("l_y").textContent=d.y;document.getElementById("l_d").textContent=d.di;document.getElementById("l_g").textContent=d.gr;document.getElementById("l_c").textContent=d.inf;document.getElementById("l_t").textContent=d.tx;document.getElementById("l_w").textContent=d.wc;document.getElementById("l_tp").textContent=d.tp;document.getElementById("l_tm").textContent=d.tm;
+document.getElementById("l_pg").textContent=d.pg;document.getElementById("l_pgG").textContent=d.pgG;document.getElementById("l_pgP").textContent=d.pgP;document.getElementById("l_pgv").textContent=d.pgv;
+document.getElementById("l_pi").textContent=d.pi;
+document.getElementById("b_calc").textContent=d.calc;document.getElementById("t_auto").textContent=d.auto;document.getElementById("b_demo").textContent=d.demo;
+document.getElementById("b_addC").textContent=d.addC;document.getElementById("b_addF").textContent=d.addF;document.getElementById("b_addP").textContent=d.addP;document.getElementById("b_addV").textContent=d.addV;
+document.getElementById("b_share").textContent=d.share;
+document.getElementById("h_kpi").textContent=d.kpi;document.getElementById("k1").textContent=d.k1;document.getElementById("k2").textContent=d.k2;document.getElementById("k3").textContent=d.k3;document.getElementById("k4").textContent=d.k4;document.getElementById("k5").textContent=d.k5;document.getElementById("k6").textContent=d.k6;document.getElementById("k7").textContent=d.k7;document.getElementById("k8").textContent=d.k8;document.getElementById("k9").textContent=d.k9;document.getElementById("k10").textContent=d.k10;document.getElementById("k11").textContent=d.k11;document.getElementById("k12").textContent=d.k12;document.getElementById("k13").textContent=d.k13;document.getElementById("k14").textContent=d.k14;document.getElementById("k15").textContent=d.k15;document.getElementById("k16").textContent=d.k16;document.getElementById("k17").textContent=d.k17;
+document.getElementById("h_mc").textContent=d.mcTitle;document.getElementById("h_tor").textContent=d.torTitle;
+document.getElementById("b_mc").textContent=d.mcRun;document.getElementById("mcNlbl").textContent=d.mcNlbl;
+document.getElementById("t_adv").textContent=d.adv;document.getElementById("h_br").textContent=d.br;
+var i;for(i=1;i<=5;i++){document.getElementById("bh"+i).textContent=d.bh[i-1];}
+document.getElementById("h_cf").textContent=d.cf;
+var j;for(j=1;j<=7;j++){document.getElementById("fh"+j).textContent=d.fh[j-1];}
+document.getElementById("h_se").textContent=d.se;document.getElementById("h_rp").textContent=d.rp;
+document.getElementById("b_save").textContent=d.save;document.getElementById("b_load").textContent=d.load;document.getElementById("b_reset").textContent=d.reset;
+if(!hasCalculated){document.getElementById("verdict").textContent=d.pc;document.getElementById("stext").textContent="";document.getElementById("mcStats").textContent=d.mcEmpty;}
+updateUndo();refreshBiz();formatAllInputs();sums();if(hasCalculated)calculate(true);}
+function formatAllInputs(){isFormatting=true;try{var els=document.querySelectorAll("input.num");var i;for(i=0;i<els.length;i++){if(els[i].value!=="")els[i].value=fmt(parseNum(els[i].value),els[i].dataset&&els[i].dataset.int==="1"?0:DEC);}}finally{isFormatting=false;}}
+function scheduleRecalc(){if(isFormatting)return;var c=document.getElementById("autoChk");if(!c||!c.checked||!hasCalculated)return;if(recalcTimer)clearTimeout(recalcTimer);recalcTimer=setTimeout(function(){try{calculate(true);}catch(e){if(window.console)console.error(e);}},350);}
+document.addEventListener("mousedown",function(){lastPointer=true;},true);
+document.addEventListener("keydown",function(){lastPointer=false;},true);
+function bindNum(inp){if(!inp||inp.dataset.bound==="1")return;inp.dataset.bound="1";inp.classList.add("num");
+inp.addEventListener("input",function(){if(isFormatting)return;sums();scheduleRecalc();});
+inp.addEventListener("blur",function(){isFormatting=true;try{this.value=fmt(parseNum(this.value),this.dataset.int==="1"?0:DEC);}finally{isFormatting=false;}sums();scheduleRecalc();});
+inp.addEventListener("focus",function(){this.value=toEn(this.value);var s=this;setTimeout(function(){try{if(!lastPointer)s.select();}catch(e){}},0);});}
+function addRow(tid,afterTr){var withInfl=(tid==="opexT"||tid==="varT");
+var tb=document.querySelector("#"+tid+" tbody");if(!tb)return null;
+var tr=document.createElement("tr");
+var td1=document.createElement("td");var in1=document.createElement("input");in1.type="text";in1.placeholder=T("phI");in1.maxLength=60;in1.addEventListener("input",scheduleRecalc);td1.appendChild(in1);
+var td2=document.createElement("td");td2.className="c12";var in2=document.createElement("input");in2.type="text";in2.className="cost";in2.value=fmt(0,DEC);in2.setAttribute("maxlength","24");bindNum(in2);td2.appendChild(in2);
+tr.appendChild(td1);tr.appendChild(td2);
+if(withInfl){var tdI=document.createElement("td");tdI.className="cinfl";var inI=document.createElement("input");inI.type="text";inI.className="cost";inI.placeholder=T("inf");inI.setAttribute("maxlength","7");inI.addEventListener("input",scheduleRecalc);bindNum(inI);tdI.appendChild(inI);tr.appendChild(tdI);}
+var td3=document.createElement("td");
+var d=document.createElement("button");d.type="button";d.className="dup";d.textContent="⧉";
+d.onclick=function(){var ntr=addRow(tid,tr);if(ntr){ntr.children[0].querySelector("input").value=in1.value;ntr.children[1].querySelector("input").value=in2.value;if(withInfl&&tr.children[2]){var srcI=tr.children[2].querySelector("input"),dstI=ntr.children[2].querySelector("input");if(srcI&&dstI)dstI.value=srcI.value;}sums();scheduleRecalc();}};
+var b=document.createElement("button");b.type="button";b.className="del";b.textContent="✕";
+b.onclick=function(){tr.remove();sums();scheduleRecalc();};
+td3.appendChild(d);td3.appendChild(b);
+tr.appendChild(td3);
+if(afterTr&&afterTr.parentNode===tb)tb.insertBefore(tr,afterTr.nextSibling);else tb.appendChild(tr);
+sums();return tr;}
+function addProduct(n,p,u,afterTr){var tb=document.querySelector("#prodT tbody");if(!tb)return null;
+var tr=document.createElement("tr");
+var td0=document.createElement("td");td0.className="cnp";var i0=document.createElement("input");i0.type="text";i0.maxLength=60;i0.value=n||"";i0.placeholder=T("phP");i0.addEventListener("input",scheduleRecalc);td0.appendChild(i0);tr.appendChild(td0);
+var vals=[p||0,u||0],k;
+for(k=0;k<2;k++){var td=document.createElement("td");td.className="cnq";var inp=document.createElement("input");inp.type="text";inp.className="cost";inp.setAttribute("maxlength","24");if(k===1)inp.dataset.int="1";inp.value=fmt(vals[k],k===1?0:DEC);bindNum(inp);td.appendChild(inp);tr.appendChild(td);}
+var tdG=document.createElement("td");tdG.className="cinq";var ig=document.createElement("input");ig.type="text";ig.className="cost";ig.placeholder=T("inf");ig.setAttribute("maxlength","7");ig.addEventListener("input",scheduleRecalc);bindNum(ig);tdG.appendChild(ig);tr.appendChild(tdG);
+var tdD=document.createElement("td");
+var d=document.createElement("button");d.type="button";d.className="dup";d.textContent="⧉";
+d.onclick=function(){var ntr=addProduct(i0.value,parseNum(tr.children[1].querySelector("input").value),parseNum(tr.children[2].querySelector("input").value),tr);
+if(ntr){var sg=tr.children[3].querySelector("input"),dg=ntr.children[3].querySelector("input");if(sg&&dg)dg.value=sg.value;}
+scheduleRecalc();};
+var b=document.createElement("button");b.type="button";b.className="del";b.textContent="✕";
+b.onclick=function(){tr.remove();sums();scheduleRecalc();};
+tdD.appendChild(d);tdD.appendChild(b);tr.appendChild(tdD);
+if(afterTr&&afterTr.parentNode===tb)tb.insertBefore(tr,afterTr.nextSibling);else tb.appendChild(tr);
+sums();return tr;}
+function colSum(tid,idx){var s=0;var rs=document.querySelectorAll("#"+tid+" tbody tr");var i,inp,v;
+for(i=0;i<rs.length;i++){if(rs[i].children.length>idx){inp=rs[i].children[idx].querySelector("input");if(inp){v=parseNum(inp.value);if(v<0)v=0;if(isFinite(v))s+=v;}}}return s;}
+function maxRow(tid){var best={name:"",value:0};var rs=document.querySelectorAll("#"+tid+" tbody tr");var i,nm,v;
+for(i=0;i<rs.length;i++){nm=rs[i].children[0].querySelector("input").value||"-";v=parseNum(rs[i].children[1].querySelector("input").value);if(v>best.value)best={name:nm,value:v};}return best;}
+function getProducts(){var a=[];var rs=document.querySelectorAll("#prodT tbody tr");var i,ins,r,pm=priceMode();
+for(i=0;i<rs.length;i++){if(rs[i].children.length<4)continue;
+ins=rs[i].querySelectorAll("input");r=null;
+if(pm==="p"&&ins.length>=4&&ins[3].value&&ins[3].value.trim()!=="")r=clampNum(ins[3].value,-50,200);
+a.push({name:ins[0].value||"-",price:Math.max(0,parseNum(ins[1].value)),units:Math.max(0,parseNum(ins[2].value)),r:r});}
+return a.filter(function(p){return p.units>0&&p.price>0;});}
+function getCostItems(tid){var a=[],rs=document.querySelectorAll("#"+tid+" tbody tr"),i,ins,per=perInflOn(),raw;
+for(i=0;i<rs.length;i++){ins=rs[i].querySelectorAll("input");
+if(ins.length>=2){var it={v:Math.max(0,parseNum(ins[1].value)),r:null};
+if(per&&ins.length>=3){raw=ins[2].value;if(raw&&raw.trim()!=="")it.r=clampNum(raw,0,200);}
+a.push(it);}}
+return a;}
+function sums(){var cx=colSum("capexT",1),fx=colSum("opexT",1),vx=colSum("varT",1);var prods=getProducts();var rev=0,units=0,i;
+for(i=0;i<prods.length;i++){rev+=prods[i].price*prods[i].units;units+=prods[i].units;}
+document.getElementById("capexTotal").textContent=money(cx);document.getElementById("opexTotal").textContent=money(fx);document.getElementById("varTotal").textContent=money(vx);document.getElementById("prodTotal").textContent=(LANG==="fa"?"درآمد ماهانه: ":"Revenue/mo: ")+money(rev);
+var avg=units>0?vx/units:0,avgP=units>0?rev/units:0;
+document.getElementById("salesInfo").innerHTML=(LANG==="fa"?("جمع واحدها: <b>"+fmt(units,0)+"</b> | میانگین قیمت: <b>"+money(avgP)+"</b>"):("Total units: <b>"+fmt(units,0)+"</b> | Avg price: <b>"+money(avgP)+"</b>"));
+document.getElementById("avgInfo").innerHTML=(LANG==="fa"?("میانگین هزینه = "+money(vx)+" ÷ "+fmt(units,0)+" = <b>"+money(avg)+"</b>"):("Avg cost = "+money(vx)+" ÷ "+fmt(units,0)+" = <b>"+money(avg)+"</b>"));
+var margin=rev>0?(rev-vx)/rev:0,be=margin>0?fx/margin:Infinity,pct=(rev>0&&margin>0)?Math.min(100,rev/be*100):0;
+document.getElementById("beFill").style.width=pct+"%";
+var warns=[];
+if(!prods.length)warns.push(LANG==="fa"?"⚠️ محصول معتبری وارد نشده.":"⚠️ No valid product.");
+if(units>0&&vx>rev)warns.push(LANG==="fa"?"⚠️ هزینه متغیر از درآمد بیشتر است!":"⚠️ Variable costs exceed revenue!");
+var wb=document.getElementById("warnBox");
+if(warns.length){wb.style.display="block";wb.innerHTML=warns.join("<br>");}else{wb.style.display="none";wb.innerHTML="";}}
+function npvCalc(r,f,c){var n=-c;var i;for(i=0;i<f.length;i++){n+=f[i]/Math.pow(1+r,i+1);}return n;}
+function irrCalc(f,c){
+if(!(c>0))return null;
+var hasPos=false,i;for(i=0;i<f.length;i++){if(f[i]>0){hasPos=true;break;}}
+if(!hasPos)return null;
+var r=0.1,k,npv,npv2,d,nr;
+for(k=0;k<100;k++){
+npv=npvCalc(r,f,c);
+if(Math.abs(npv)<1e-7)return r*100;
+npv2=npvCalc(r+1e-6,f,c);
+d=(npv2-npv)/1e-6;
+if(!isFinite(d)||Math.abs(d)<1e-12)break;
+nr=r-npv/d;
+if(!isFinite(nr))break;
+if(nr<-0.95)nr=-0.95;if(nr>10)nr=10;
+if(Math.abs(nr-r)<1e-9){r=nr;break;}
+r=nr;}
+npv=npvCalc(r,f,c);
+if(Math.abs(npv)<Math.max(1e-4,0.01*c))return r*100;
+var lo=-0.95,hi=10,flo=npvCalc(lo,f,c),fhi=npvCalc(hi,f,c);
+if(!isFinite(flo)||!isFinite(fhi)||flo*fhi>0)return null;
+var mid,fm;
+for(k=0;k<200;k++){mid=(lo+hi)/2;fm=npvCalc(mid,f,c);if(Math.abs(fm)<1e-7)return mid*100;if(flo*fm<0){hi=mid;fhi=fm;}else{lo=mid;flo=fm;}}
+return ((lo+hi)/2)*100;}
+function mirrCalc(flows,capex,r){if(!(capex>0))return null;
+var n=flows.length,i,f,fv=0,pvNeg=0,hasPos=false;
+for(i=0;i<n;i++){f=flows[i];
+if(f>=0){fv+=f*Math.pow(1+r,n-1-i);hasPos=true;}
+else{pvNeg+=f/Math.pow(1+r,i+1);}}
+if(!hasPos)return null;
+var totalNeg=capex-pvNeg;
+if(!(totalNeg>0))return null;
+return (Math.pow(fv/totalNeg,1/n)-1)*100;}
+function piCalc(N,capex){if(!(capex>0))return null;return (N+capex)/capex;}
+function dpbCalc(r,flows,capex){var cum=-capex,i,df;
+for(i=0;i<flows.length;i++){df=flows[i]/Math.pow(1+r,i+1);cum+=df;
+if(cum>=0){if(df>0)return i+(0-(cum-df))/df;return i+1;}}
+return Infinity;}
+function gv(id){var el=document.getElementById(id);return el?parseNum(el.value):0;}
+function debtService(capex,eqPct,lr,yrs){var loan=capex*(1-eqPct/100);if(loan<=0)return{loan:0,ds:0};
+var r=Math.max(0,Math.min(100,lr))/100,n=Math.max(1,yrs);
+var ds=(r===0)?loan/n:loan*r/(1-Math.pow(1+r,-n));
+return{loan:loan,ds:ds};}
+function flowsFrom(M,pM,qM,costMult,fixMult){var flows=[],rows=[],y,i,it,fr,vol,rev,vari,fix,wc,ebit,tx,net;
+var fm=(fixMult===undefined||fixMult===null)?costMult:fixMult;
+for(y=1;y<=M.yrs;y++){
+vol=Math.pow(1+M.g,y-1)*qM;
+rev=0;
+for(i=0;i<M.prods.length;i++){it=M.prods[i];fr=(it.r===null||it.r===undefined)?M.pgr:it.r;rev+=it.units*vol*it.price*pM*Math.pow(1+fr,y-1);}
+rev*=12;
+fix=0;
+for(i=0;i<M.fixItems.length;i++){it=M.fixItems[i];fr=(it.r===null||it.r===undefined)?M.cg:it.r;fix+=it.v*fm*Math.pow(1+fr,y-1);}
+fix*=12;
+vari=0;
+for(i=0;i<M.varItems.length;i++){it=M.varItems[i];fr=(it.r===null||it.r===undefined)?M.cg:it.r;vari+=it.v*costMult*Math.pow(1+fr,y-1);}
+vari*=12*vol;
+wc=(y===1)?(rev*M.wcp):((rev-rows[y-2].rev)*M.wcp);
+ebit=rev-fix-vari-M.ds;
+tx=Math.max(0,ebit)*M.tax;
+net=ebit-tx-wc;
+if(y===M.yrs)net+=rev*M.wcp;
+flows.push(net);rows.push({rev:rev,fix:fix,vari:vari,it:M.ds+tx,net:net});}
+return{flows:flows,rows:rows};}
+function npvFrom(M,pM,qM,costMult,fixMult){return npvCalc(M.disc,flowsFrom(M,pM,qM,costMult,fixMult).flows,M.capex);}
+function findAdvisor(M){var best={priceMult:null,qtyMult:null,both:null},mi,m;
+for(mi=101;mi<=300;mi++){m=mi/100;if(npvFrom(M,m,1,1)>0){best.priceMult=m;break;}}
+for(mi=101;mi<=300;mi++){m=mi/100;if(npvFrom(M,1,m,1)>0){best.qtyMult=m;break;}}
+for(mi=101;mi<=200;mi++){m=mi/100;if(npvFrom(M,m,m,1)>0){best.both=m;break;}}
+return best;}
+function weightedPriceGrowth(prods,glob){var wsum=0,rs=0,i,pw,pr;
+for(i=0;i<prods.length;i++){pw=prods[i].price*prods[i].units;pr=(prods[i].r===null||prods[i].r===undefined)?glob:prods[i].r;wsum+=pw;rs+=pw*pr;}
+return wsum>0?rs/wsum:0;}
+function weightedCostInflation(items,glob){var wsum=0,rs=0,i;
+for(i=0;i<items.length;i++){wsum+=items[i].v;rs+=items[i].v*((items[i].r===null||items[i].r===undefined)?glob:items[i].r);}
+return wsum>0?rs/wsum:0;}
+function costCutFor(M,pM,qM){var m;
+for(m=0.90;m>=0.50;m-=0.02){if(npvFrom(M,pM,qM,m)>=0)return Math.round((1-m)*100);}
+return null;}
+function salesShockBE(M){var lo=0.2,hi=1.0,mid,j;
+if(npvFrom(M,1,hi,1,1)<=0)return 0;
+for(j=0;j<22;j++){mid=(lo+hi)/2;if(npvFrom(M,1,mid,1,1)>0)hi=mid;else lo=mid;}
+return (1-hi)*100;}
+function triSample(a,b,c){var u=Math.random(),f=(b-a)/(c-a);
+if(u<f)return a+Math.sqrt(u*(c-a)*(b-a));
+return c-Math.sqrt((1-u)*(c-a)*(c-b));}
+function runMC(M){var N=mcCount(),npvs=[],i;
+for(i=0;i<N;i++){
+var revS=triSample(0.7,1.0,1.2);
+var costS=triSample(0.9,1.0,1.25);
+var gq=M.g*triSample(0.3,1.0,1.7);
+if(gq<-0.5)gq=-0.5;if(gq>1.5)gq=1.5;
+var ci=M.cg*triSample(0.4,1.0,1.6);
+var pg=M.pgr*triSample(0.3,1.0,1.6);
+if(pg<-0.4)pg=-0.4;if(pg>2)pg=2;
+var Ms={capex:M.capex,yrs:M.yrs,disc:M.disc,g:gq,cg:ci,tax:M.tax,wcp:M.wcp,ds:M.ds,rev0:M.rev0,revM:M.revM,varM:M.varM,fixM:M.fixM,unitsM:M.unitsM,pgr:pg,prods:M.prods,fixItems:M.fixItems,varItems:M.varItems};
+npvs.push(npvFrom(Ms,revS,1,costS));}
+var s=npvs.slice();s.sort(function(a,b){return a-b;});
+var mean=0,i2;for(i2=0;i2<s.length;i2++)mean+=s[i2];mean/=s.length;
+var va=0,i3;for(i3=0;i3<s.length;i3++)va+=(s[i3]-mean)*(s[i3]-mean);va/=s.length;
+var loss=0,i4;for(i4=0;i4<s.length;i4++){if(s[i4]<0)loss++;}
+return{npvs:npvs,mean:mean,std:Math.sqrt(va),p5:s[Math.floor(s.length*0.05)],med:s[Math.floor(s.length*0.5)],p95:s[Math.floor(s.length*0.95)],pLoss:loss/s.length,N:s.length};}
+function computeTornado(M){var baseFl=flowsFrom(M,1,1,1,1).flows;
+var names=T("torNames");
+var pHi=npvFrom(M,1.1,1,1,1),pLo=npvFrom(M,0.9,1,1,1);
+var qHi=npvFrom(M,1,1.1,1,1),qLo=npvFrom(M,1,0.9,1,1);
+var vHi=npvFrom(M,1,1,1.1,1),vLo=npvFrom(M,1,1,0.9,1);
+var fHi=npvFrom(M,1,1,1,1.1),fLo=npvFrom(M,1,1,1,0.9);
+var cHi=npvCalc(M.disc,baseFl,M.capex*1.1),cLo=npvCalc(M.disc,baseFl,M.capex*0.9);
+var dHi=npvCalc(M.disc*1.1,baseFl,M.capex),dLo=npvCalc(M.disc*0.9,baseFl,M.capex);
+var items=[];
+items.push({n:names[0],lo:pLo,hi:pHi});
+items.push({n:names[1],lo:qLo,hi:qHi});
+items.push({n:names[2],lo:vLo,hi:vHi});
+items.push({n:names[3],lo:fLo,hi:fHi});
+items.push({n:names[4],lo:cLo,hi:cHi});
+items.push({n:names[5],lo:dLo,hi:dHi});
+items.sort(function(a,b){return Math.abs(b.hi-b.lo)-Math.abs(a.hi-a.lo);});
+return items;}
+function rws0(M){var R=flowsFrom(M,1,1,1);return R.rows[0].rev-R.rows[0].fix-R.rows[0].vari;}
+function bizLine(){var n=bizName();return n?((LANG==="fa"?"کسب‌وکار: ":"Business: ")+n+" | "):"";}
+function clearOutputs(){var ids=["kCapex","kRev","kUnits","kAvg","kProf","kMarg","kBE","kMOS","kNPV","kIRR","kROI","kPB","kDSCR","kWF","kPIv","kMIRRv","kDPBv"];var i,e;
+for(i=0;i<ids.length;i++){e=document.getElementById(ids[i]);if(e){e.textContent="-";e.className="info";}}
+var v=document.getElementById("verdict");if(v){v.textContent=T("pc");v.style.background="#334155";}
+var sf=document.getElementById("sfill");if(sf)sf.style.width="0%";
+var st=document.getElementById("stext");if(st)st.textContent="";
+var pb=document.querySelector("#prodBreak tbody");if(pb)pb.innerHTML="";
+var ft=document.querySelector("#flowT tbody");if(ft)ft.innerHTML="";
+var se=document.getElementById("sens");if(se)se.innerHTML="";
+var ad=document.getElementById("advisor");if(ad)ad.innerHTML="<p>...</p>";
+var ab=document.getElementById("advBtns");if(ab)ab.innerHTML="";
+var ms=document.getElementById("mcStats");if(ms)ms.textContent=T("mcEmpty");
+var c1=document.getElementById("ch1"),c2=document.getElementById("ch2"),c3=document.getElementById("mcC"),c4=document.getElementById("tornC");
+if(c1)c1.width=760;if(c2)c2.width=760;if(c3)c3.width=760;if(c4)c4.width=760;}
+function mcStatsHtml(mc){var fa=(LANG==="fa");
+var v,vc;
+if(mc.pLoss<=0.10){v=fa?"ریسک زیان پایین — مدل پایدار است":"Low loss risk — robust model";vc="gd";}
+else if(mc.pLoss<=0.25){v=fa?"قابل قبول با مدیریت ریسک":"Acceptable with active risk management";vc="yd";}
+else if(mc.pLoss<=0.45){v=fa?"پرریسک — برنامه کاهش الزامی است":"High risk — mitigation plan required";vc="bd";}
+else{v=fa?"بازطراحی مدل توصیه می‌شود":"Model redesign recommended";vc="bd";}
+var s="";
+s+=T("mcLoss")+": <b class='"+vc+"'>"+fmt(mc.pLoss*100,1)+"٪</b> — "+v+"<br>";
+s+=T("mcMean")+": <b>"+money(mc.mean)+"</b> | "+T("mcStd")+": "+money(mc.std)+"<br>";
+s+=T("mcP5")+": <b>"+money(mc.p5)+"</b> | "+T("mcMed")+": "+money(mc.med)+" | "+T("mcP95")+": <b>"+money(mc.p95)+"</b>";
+return s;}
+function drawHist(cv,npvs){var x=cv.getContext("2d");cv.width=760;cv.height=220;x.clearRect(0,0,760,220);
+if(!npvs.length)return;
+var B=24,i,mn=npvs[0],mx=npvs[0];
+for(i=1;i<npvs.length;i++){if(npvs[i]<mn)mn=npvs[i];if(npvs[i]>mx)mx=npvs[i];}
+if(!(mx>mn))mx=mn+1;
+var bins=[],bi;
+for(bi=0;bi<B;bi++)bins.push(0);
+for(i=0;i<npvs.length;i++){var idx=Math.floor((npvs[i]-mn)/(mx-mn)*B);if(idx>=B)idx=B-1;if(idx<0)idx=0;bins[idx]++;}
+var bmax=1;for(bi=0;bi<B;bi++)if(bins[bi]>bmax)bmax=bins[bi];
+var gy=185,gh=150,bw=700/B;
+for(bi=0;bi<B;bi++){var center=mn+(bi+0.5)/B*(mx-mn);
+var h2=bins[bi]/bmax*gh;
+x.fillStyle=center<0?"#ef4444":"#22c55e";
+x.fillRect(30+bi*bw,gy-h2,Math.max(2,bw-1),h2);}
+if(mn<0&&mx>0){var x0=30+(0-mn)/(mx-mn)*700;
+x.strokeStyle="#94a3b8";x.beginPath();x.moveTo(x0,20);x.lineTo(x0,gy);x.stroke();}
+var mc=window._mc;
+if(mc&&mx!==mn){var xa=30+(mc.mean-mn)/(mx-mn)*700;
+if(xa>=30&&xa<=730){x.fillStyle="#facc15";x.fillRect(xa-1,20,2,gy-20);}}
+x.fillStyle="#94a3b8";x.font="11px sans-serif";x.textAlign="left";
+x.fillText(fmt(mn,0),30,gy+14);
+x.textAlign="right";x.fillText(fmt(mx,0),730,gy+14);
+if(mc){x.textAlign="center";x.fillStyle="#facc15";x.fillText(T("mcMean")+": "+money(mc.mean),380,14);}
+x.textAlign="start";}
+function drawTornado(cv,arr){var x=cv.getContext("2d");cv.width=760;cv.height=260;x.clearRect(0,0,760,260);
+if(!arr||!arr.length){x.fillStyle="#94a3b8";x.fillText(T("torEmpty"),20,130);return;}
+var maxAbs=1,i,d;
+for(i=0;i<arr.length;i++){d=Math.max(Math.abs(arr[i].lo),Math.abs(arr[i].hi));if(d>maxAbs)maxAbs=d;}
+var ax=400,sc=320/maxAbs,barH=16,gap=36;
+x.strokeStyle="#475569";x.beginPath();x.moveTo(ax,12);x.lineTo(ax,12+arr.length*gap);x.stroke();
+for(i=0;i<arr.length;i++){var y=14+i*gap;
+var x1=ax+arr[i].lo*sc,x2=ax+arr[i].hi*sc;
+if(x1>x2){var tmp=x1;x1=x2;x2=tmp;}
+x.fillStyle="#6366f1";
+x.fillRect(x1,y,Math.max(3,x2-x1),barH);
+x.fillStyle="#e2e8f0";x.font="bold 11px sans-serif";x.textAlign="right";
+x.fillText(arr[i].n,Math.min(118,x1-6),y+12);
+x.font="10px sans-serif";x.fillStyle="#94a3b8";
+if(arr[i].lo<0){x.textAlign="right";x.fillText(money(arr[i].lo),x1-2,y+26);}
+if(arr[i].hi>0){x.textAlign="left";x.fillText(money(arr[i].hi),x2+2,y-4);}
+}
+x.textAlign="start";}
+function calculate(silent){try{
+var capex=colSum("capexT",1),fixM=colSum("opexT",1),varM=colSum("varT",1);var prods=getProducts();
+if(!prods.length){if(!silent)alert(LANG==="fa"?"حداقل یک محصول وارد کنید":"Add at least one product");if(hasCalculated)clearOutputs();return;}
+var yrs=Math.round(clampNum(gv("years")||5,1,10)),disc=clampNum(gv("disc"),0,100)/100,g=clampNum(gv("growth"),-50,500)/100,cg=clampNum(gv("cgrow"),-20,200)/100,tax=clampNum(gv("tax"),0,100)/100,wcp=clampNum(gv("wcp"),0,50)/100,lr=clampNum(gv("loanRate"),0,100),eq=clampNum(gv("equityPct"),0,100);
+var targetProfit=Math.max(0,gv("targetProfit")),targetMargin=clampNum(gv("targetMargin"),0,90);
+var revM=0,unitsM=0,j;
+for(j=0;j<prods.length;j++){revM+=prods[j].price*prods[j].units;unitsM+=prods[j].units;}
+if(unitsM<=0){if(!silent)alert(LANG==="fa"?"تعداد باید بیشتر از صفر باشد":"Units must be > 0");if(hasCalculated)clearOutputs();return;}
+var avgCost=varM/unitsM,avgPrice=revM/unitsM;
+var D=debtService(capex,eq,lr,yrs),loan=D.loan,ds=D.ds;
+var M={capex:capex,yrs:yrs,disc:disc,g:g,cg:cg,tax:tax,wcp:wcp,ds:ds,loan:loan,rev0:revM*12,revM:revM,varM:varM,fixM:fixM,unitsM:unitsM,pgr:globalPGR(),prods:prods,fixItems:getCostItems("opexT"),varItems:getCostItems("varT")};
+var R=flowsFrom(M,1,1,1);var flows=R.flows,rws=R.rows;lastFlows=flows;lastRows=rws;hasCalculated=true;
+var margin=revM>0?(revM-varM)/revM*100:0,profM=revM-fixM-varM;
+var cmU=avgPrice-avgCost,cmR=avgPrice>0?cmU/avgPrice:0;
+var be=cmR>0?fixM/cmR:Infinity,beUnits=cmU>0?fixM/cmU:Infinity;
+var mos=(revM>0&&isFinite(be))?(revM-be)/revM*100:-100;
+var N=npvCalc(disc,flows,capex);M.npv0=N;
+var IR=irrCalc(flows,capex),tot=0,i;
+for(i=0;i<flows.length;i++){tot+=flows[i];}
+var roi=capex>0?(tot-capex)/capex*100:null;
+var PIv=piCalc(N,capex);
+var MI=mirrCalc(flows,capex,disc);
+var DP=dpbCalc(disc,flows,capex);
+var cum=-capex,cums=[];
+for(i=0;i<flows.length;i++){cum+=flows[i];cums.push(cum);}
+var pbVal=Infinity;
+for(i=0;i<cums.length;i++){if(cums[i]>=0){var prev=i===0?-capex:cums[i-1];if(flows[i]!==0){pbVal=i+(0-prev)/flows[i];}break;}}
+var ebitda1=rws[0].rev-rws[0].fix-rws[0].vari;
+var dscr=ds>0?ebitda1/ds:null;
+var wflow=Math.min.apply(null,flows);
+M.shock=salesShockBE(M);
+window._mc=runMC(M);
+window._torn=computeTornado(M);
+function S(id,v,cls){var e=document.getElementById(id);if(e){e.textContent=v;e.className=cls||"";}}
+S("kCapex",money(capex),"info");S("kRev",money(revM),"info");S("kUnits",fmt(unitsM,0),"info");S("kAvg",money(avgCost),"info");
+S("kProf",money(profM),profM>0?"good":"bad");
+S("kMarg",fmt(margin,2)+"%",margin>20?"good":(margin>0?"info":"bad"));
+S("kBE",isFinite(be)?money(be):"--","info");
+S("kMOS",margin>0?fmt(mos,2)+"%":"--",margin>0?(mos>20?"good":"bad"):"info");
+S("kNPV",money(N),N>0?"good":"bad");
+S("kIRR",IR===null?"--":(IR>999?">999":fmt(IR,2)+"%"),IR===null?"info":(IR>disc*100?"good":"bad"));
+S("kROI",roi===null?"--":fmt(roi,2)+"%",roi===null?"info":(roi>0?"good":"bad"));
+S("kPB",isFinite(pbVal)?(LANG==="fa"?fmt(pbVal,2)+" سال":fmt(pbVal,2)+" yrs"):(LANG==="fa"?">"+fmt(yrs,0)+" سال":">"+yrs+" yrs"),isFinite(pbVal)?"good":"bad");
+S("kDSCR",dscr===null?"--":fmt(dscr,2)+"x",dscr===null?"info":(dscr>=1.3?"good":(dscr>=1?"info":"bad")));
+S("kWF",money(wflow),wflow>=0?"good":"bad");
+S("kPIv",PIv===null?"--":fmt(PIv,2)+"x",PIv===null?"info":(PIv>=1.2?"good":(PIv>=1?"info":"bad")));
+S("kMIRRv",MI===null?"--":fmt(MI,2)+"%",MI===null?"info":(MI>disc*100?"good":"bad"));
+S("kDPBv",isFinite(DP)?(LANG==="fa"?fmt(DP,2)+" سال":fmt(DP,2)+" yrs"):(LANG==="fa"?">"+fmt(yrs,0)+" سال":">"+yrs+" yrs"),isFinite(DP)?"good":"bad");
+var score=0;
+if(profM>0)score+=15;
+if(margin>35)score+=12;else if(margin>20)score+=8;else if(margin>0)score+=4;
+if(mos>30)score+=13;else if(mos>10)score+=8;else if(mos>0)score+=4;
+if(N>0)score+=25;else if(capex>0&&N>-capex*0.3)score+=8;
+if(IR!==null&&IR>disc*100)score+=20;else if(IR!==null&&IR>0)score+=7;
+if(isFinite(pbVal)&&pbVal<=2.5)score+=15;else if(isFinite(pbVal)&&pbVal<=yrs)score+=7;
+if(profM<0)score=Math.min(score,35);
+if(window._mc&&window._mc.pLoss>0.45)score=Math.min(score,45);
+else if(window._mc&&window._mc.pLoss>0.25)score=Math.min(score,65);
+score=Math.max(0,Math.min(100,Math.round(score)));
+document.getElementById("sfill").style.width=score+"%";
+document.getElementById("stext").textContent=bizLine()+(LANG==="fa"?"نمره: "+fmt(score,0)+" از ۱۰۰":"Score: "+score+"/100");
+var msg,bg;
+if(LANG==="fa"){
+if(margin<=0){msg="⛔ توجیه‌ناپذیر — هزینه بیش از درآمد";bg="#7f1d1d";}
+else if(profM<=0){msg="🔴 توجیه‌ناپذیر — زیان ماهانه";bg="#b91c1c";}
+else if(score>=80){msg="✅ کاملاً توجیه‌پذیر — تأیید برای سرمایه‌گذاری";bg="#15803d";}
+else if(score>=60){msg="🟢 توجیه‌پذیر — با کنترل ریسک ادامه دهید";bg="#16a34a";}
+else if(score>=40){msg="🟡 لب‌مرزی — نیاز به اصلاح قیمت یا هزینه";bg="#92600a";}
+else{msg="🔴 توجیه‌ناپذیر — رد یا بازطراحی کامل";bg="#b91c1c";}
+}else{
+if(margin<=0){msg="⛔ NOT VIABLE — cost exceeds revenue";bg="#7f1d1d";}
+else if(profM<=0){msg="🔴 NOT VIABLE — monthly losses";bg="#b91c1c";}
+else if(score>=80){msg="✅ HIGHLY VIABLE — approve";bg="#15803d";}
+else if(score>=60){msg="🟢 VIABLE — proceed with control";bg="#16a34a";}
+else if(score>=40){msg="🟡 MARGINAL — fix price/cost";bg="#92600a";}
+else{msg="🔴 NOT FEASIBLE — redesign";bg="#b91c1c";}
+}
+var vv=document.getElementById("verdict");vv.textContent=bizLine()+msg+"  •  "+money(N);vv.style.background=bg;
+var ph="";
+for(i=0;i<prods.length;i++){var p=prods[i],r=p.price*p.units,sh=revM>0?r/revM*100:0;
+ph+="<tr><td>"+esc(p.name)+"</td><td>"+money(p.price)+"</td><td>"+fmt(p.units,0)+"</td><td>"+money(r)+"</td><td>"+fmt(sh,2)+"%</td></tr>";}
+document.querySelector("#prodBreak tbody").innerHTML=ph;
+var fh="";var cc=-capex;
+for(i=0;i<flows.length;i++){cc+=flows[i];var rw=rws[i];
+fh+="<tr><td>"+(LANG==="fa"?"سال "+fmt(i+1,0):"Y"+(i+1))+"</td><td>"+money(rw.rev)+"</td><td>"+money(rw.fix)+"</td><td>"+money(rw.vari)+"</td><td>"+money(rw.it)+"</td><td>"+money(flows[i])+"</td><td>"+money(cc)+"</td></tr>";}
+document.querySelector("#flowT tbody").innerHTML=fh;
+var nDown=npvFrom(M,1,0.85,1);
+var nCost=npvFrom(M,1,1,1.15);
+var nUp=npvFrom(M,1,1.15,1);
+var ns=[N,nDown,nCost,nUp],sc=T("sc"),sh2="",k;
+for(k=0;k<4;k++){sh2+="<div><b>"+esc(sc[k])+"</b><br>"+(LANG==="fa"?"ارزش فعلی: ":"NPV: ")+"<b>"+money(ns[k])+"</b> "+(ns[k]>0?"✓":"✗")+"</div>";}
+document.getElementById("sens").innerHTML=sh2;
+M.worst=Math.min.apply(null,ns);
+var worst=M.worst;
+lastKPIs={capex:capex,npv:N,irr:IR,roi:roi,score:score,pb:isFinite(pbVal)?pbVal:null,be:be,dscr:dscr,wflow:wflow,pi:PIv,mirr:MI,dpb:isFinite(DP)?DP:null,shock:M.shock,pLoss:window._mc?window._mc.pLoss:null};
+var msBox=document.getElementById("mcStats");
+if(msBox)msBox.innerHTML=mcStatsHtml(window._mc);
+drawHist(document.getElementById("mcC"),window._mc.npvs);
+drawTornado(document.getElementById("tornC"),window._torn);
+renderAdvisor(M,revM,unitsM,avgPrice,avgCost,fixM,varM,N,score,margin,prods,targetProfit,targetMargin,profM);
+var bigF=maxRow("opexT");
+var li=[];
+function recText(){
+if(profM<=0)return LANG==="fa"?"زیان ماهانه دارید — قیمت را افزایش یا هزینه ثابت را کاهش دهید و دوباره محاسبه کنید.":"Monthly loss — raise prices or cut fixed costs, then recalculate.";
+if(score>=80)return LANG==="fa"?"تأیید برای سرمایه‌گذاری — با پایش ماهانه ادامه دهید.":"Approve for investment — proceed with monthly monitoring.";
+if(score>=60)return LANG==="fa"?"توجیه‌پذیر است — ریسک‌ها را پایش و حاشیه امنیت را حفظ کنید.":"Viable — monitor risks and maintain the safety margin.";
+if(score>=40)return LANG==="fa"?"لب‌مرزی — اصلاح قیمت/هزینه پیش از سرمایه‌گذاری لازم است.":"Marginal — fix pricing/costs before committing capital.";
+return LANG==="fa"?"توجیه‌ناپذیر — بازطراحی مدل لازم است.":"Not feasible — redesign the model.";}
+var r1,r2,r3,r4,r5;
+if(LANG==="fa"){
+r1="واحد/ماه: "+fmt(unitsM,0)+"، میانگین قیمت "+money(avgPrice)+"، میانگین هزینه "+money(avgCost)+" → سود ماهانه <b>"+money(profM)+"</b> (حاشیه "+fmt(margin,2)+"٪).";
+r2="سرمایه‌گذاری: "+money(capex);
+if(loan>0)r2+=" (وام "+money(loan)+" با قسط سالانه "+money(ds)+")";
+r2+="؛ بازگشت ساده: "+(isFinite(pbVal)?fmt(pbVal,2)+" سال":">"+fmt(yrs,0)+" سال")+"؛ تنزیل‌شده: "+(isFinite(DP)?fmt(DP,2)+" سال":">"+fmt(yrs,0)+" سال")+".";
+r3="سربه‌سر: فروش ماهانه "+money(be);
+if(isFinite(beUnits))r3+=" (حدود "+fmt(Math.ceil(beUnits),0)+" واحد)";
+r3+="؛ حاشیه امنیت "+(margin>0?fmt(mos,2)+"٪":"--")+"؛ آستانه افت فروش: "+fmt(M.shock,1)+"٪.";
+r4="بازده: NPV="+money(N)+"، IRR="+(IR===null?"--":(IR>999?">999":fmt(IR,2)+"٪"))+"، MIRR="+(MI===null?"--":fmt(MI,2)+"٪")+"، PI="+(PIv===null?"--":fmt(PIv,2)+"x")+"، نمره="+fmt(score,0)+" از ۱۰۰";
+if(dscr!==null)r4+="، DSCR="+fmt(dscr,2)+"x";
+r4+=".";
+r5="بدترین سناریو: "+money(worst)+"؛ بدترین جریان سالانه: "+money(wflow);
+if(window._mc)r5+="؛ احتمال زیان مونت‌کارلو: "+fmt(window._mc.pLoss*100,1)+"٪.";
+if(bigF.value>0)r5+="؛ بزرگ‌ترین هزینه ثابت: «"+esc(bigF.name)+"» = "+money(bigF.value)+"/ماه.";
+}else{
+r1="Units/mo: "+fmt(unitsM,0)+", avg price "+money(avgPrice)+", avg cost "+money(avgCost)+" → profit/mo <b>"+money(profM)+"</b> (margin "+fmt(margin,2)+"%).";
+r2="Investment: "+money(capex);
+if(loan>0)r2+=" (loan "+money(loan)+", debt service "+money(ds)+"/yr)";
+r2+="; simple payback: "+(isFinite(pbVal)?fmt(pbVal,2)+" yrs":">"+yrs+" yrs")+"; discounted: "+(isFinite(DP)?fmt(DP,2)+" yrs":">"+yrs+" yrs")+".";
+r3="Break-even: "+money(be)+"/mo";
+if(isFinite(beUnits))r3+=" (about "+fmt(Math.ceil(beUnits),0)+" units)";
+r3+="; safety margin "+(margin>0?fmt(mos,2)+"%":"--")+"; sales-shock tolerance: "+fmt(M.shock,1)+"%.";
+r4="Returns: NPV="+money(N)+", IRR="+(IR===null?"--":(IR>999?">999":fmt(IR,2)+"%"))+", MIRR="+(MI===null?"--":fmt(MI,2)+"%")+", PI="+(PIv===null?"--":fmt(PIv,2)+"x")+", score "+score+"/100";
+if(dscr!==null)r4+=", DSCR="+fmt(dscr,2)+"x";
+r4+=".";
+r5="Worst scenario NPV: "+money(worst)+"; worst annual flow: "+money(wflow);
+if(window._mc)r5+="; Monte Carlo loss probability: "+fmt(window._mc.pLoss*100,1)+"%.";
+if(bigF.value>0)r5+="; biggest fixed cost: '"+esc(bigF.name)+"' = "+money(bigF.value)+"/mo.";
+}
+li.push("<li>"+esc(bizLine())+r1+"</li>");
+li.push("<li>"+r2+"</li>");
+li.push("<li>"+r3+"</li>");
+li.push("<li>"+r4+"</li>");
+li.push("<li>"+r5+"</li>");
+li.push("<li>"+recText()+"</li>");
+document.getElementById("report").innerHTML=li.join("");
+drawBars(flows);drawCum(cums);
+}catch(err){if(!silent)alert((LANG==="fa"?"خطا: ":"Error: ")+err.message);else if(window.console)console.error(err);}}
+function renderAdvisor(M,revM,unitsM,avgPrice,avgCost,fixM,varM,N,score,margin,prods,targetProfit,targetMargin,profM){
+var box=document.getElementById("advisor"),btns=document.getElementById("advBtns");
+var fa=(LANG==="fa");
+var cm=(avgPrice>0)?((avgPrice-avgCost)/avgPrice):0;
+var beUnits=(avgPrice>avgCost)?(fixM/(avgPrice-avgCost)):Infinity;
+var beRev=(cm>0)?(fixM/cm):Infinity;
+var mosL=(revM>0&&isFinite(beRev))?(revM-beRev)/revM*100:-100;
+var ebitda1=rws0(M);
+var beSafe=isFinite(beUnits)?Math.ceil(beUnits*1.2):Infinity;
+var needP_profit=avgCost+(fixM+targetProfit)/Math.max(1,unitsM);
+var needP_margin=(targetMargin<100&&targetMargin>0)?(avgCost/(1-targetMargin/100)):Infinity;
+var needP_practical=Math.max(needP_profit,isFinite(needP_margin)?needP_margin:0);
+var found=findAdvisor(M);
+var bigF=maxRow("opexT");
+var viable=(score>=60&&N>0&&profM>0);
+var newP=found.priceMult?money(avgPrice*found.priceMult):"—";
+var pracP=found.priceMult?money(round99(avgPrice*found.priceMult)):"—";
+var newQ=found.qtyMult?fmt(Math.ceil(unitsM*found.qtyMult),0):"—";
+var bothM=found.both?fmt(found.both,2):"—";
+var beUtxt=isFinite(beUnits)?fmt(Math.ceil(beUnits),0):"—";
+var safeTxt=isFinite(beSafe)?fmt(beSafe,0):"—";
+var marginTxt=isFinite(needP_margin)?money(needP_margin):"—";
+var pracT=money(round99(needP_practical));
+var html="",b="";
+if(fa){
+if(viable){
+html+="<div class='pathBox'>✅ <b class='t'>کسب‌وکار توجیه‌پذیر است</b> — سود ماهانه: <b>"+money(profM)+"</b>. برای سود "+money(targetProfit)+"/ماه قیمت میانگین باید "+money(needP_profit)+" باشد.</div>";
+}else{
+html+="<div class='pathBox'>🎯 <b class='t'>مسیر ۱ — اصلاح قیمت:</b> از "+money(avgPrice)+" به <b>"+newP+"</b> (عملی: <b>"+pracP+"</b>).</div>";
+html+="<div class='pathBox'>📦 <b class='t'>مسیر ۲ — حجم فروش:</b> از "+fmt(unitsM,0)+" به <b>"+newQ+"</b> واحد. هدف امن: <b>"+safeTxt+"</b>.</div>";
+html+="<div class='pathBox'>⚖️ <b class='t'>مسیر ۳ — متوازن:</b> قیمت و حجم ×<b>"+bothM+"</b>. سر‌به‌سر: <b>"+beUtxt+"</b>.</div>";
+html+="<div class='pathBox'>💰 <b class='t'>قیمت هدف:</b> سود "+money(targetProfit)+" → <b>"+money(needP_profit)+"</b> ؛ حاشیه "+fmt(targetMargin,0)+"٪ → <b>"+marginTxt+"</b> ؛ عملی: <b>"+pracT+"</b>.</div>";
+if(bigF.value>0)html+="<div class='pathBox'>✂️ <b class='t'>هزینه:</b> «"+esc(bigF.name)+"» = "+money(bigF.value)+" — اول آن را مذاکره کنید.</div>";
+if(profM<=0&&N>0)html+="<div class='pathBox'>⚠️ ارزش فعلی مثبت فقط به دلیل فرض رشد است — ابتدا زیان ماهانه را اصلاح کنید.</div>";
+}
+}else{
+if(viable){
+html+="<div class='pathBox'>✅ <b class='t'>Viable — profit/mo: <b>"+money(profM)+"</b>.</b> For "+money(targetProfit)+"/mo target: avg price "+money(needP_profit)+".</div>";
+}else{
+html+="<div class='pathBox'>🎯 <b class='t'>Path 1 — Price:</b> "+money(avgPrice)+" → <b>"+newP+"</b> (practical <b>"+pracP+"</b>).</div>";
+html+="<div class='pathBox'>📦 <b class='t'>Path 2 — Volume:</b> "+fmt(unitsM,0)+" → <b>"+newQ+"</b>. Safe: <b>"+safeTxt+"</b>.</div>";
+html+="<div class='pathBox'>⚖️ <b class='t'>Path 3 — Balanced:</b> ×<b>"+bothM+"</b>. BE: <b>"+beUtxt+"</b>.</div>";
+html+="<div class='pathBox'>💰 <b class='t'>Target price:</b> "+money(needP_profit)+" / margin "+marginTxt+" → <b>"+pracT+"</b>.</div>";
+if(bigF.value>0)html+="<div class='pathBox'>✂️ <b class='t'>Cost:</b> '"+esc(bigF.name)+"' = "+money(bigF.value)+"/mo.</div>";
+if(profM<=0&&N>0)html+="<div class='pathBox'>⚠️ Positive NPV relies on growth assumptions — fix the monthly loss first.</div>";
+}
+}
+var risks=[];
+var topS=0,topN="",i,shr;
+for(i=0;i<prods.length;i++){shr=revM>0?prods[i].price*prods[i].units/revM*100:0;if(shr>topS){topS=shr;topN=prods[i].name;}}
+if(topS>=70)risks.push("r",fa?("تمرکز بحرانی فروش: «"+esc(topN)+"» "+fmt(topS,1)+"٪ درآمد را می‌سازد — بحران یک‌شاخه‌ای. یک خط محصول دوم اضافه کنید."):"Critical concentration: '"+esc(topN)+"' = "+fmt(topS,1)+"% of revenue. Add a second line.");
+else if(topS>=50)risks.push("y",fa?("تمرکز فروش بالاست: «"+esc(topN)+"» = "+fmt(topS,1)+"٪ از درآمد — تنوع‌بخشی را جدی بگیرید."):"High concentration: '"+esc(topN)+"' = "+fmt(topS,1)+"% of revenue — diversify.");
+if(cm*100<10)risks.push("r",fa?("حاشیه سهم بسیار کم است ("+fmt(cm*100,1)+"٪) — کوچک‌ترین افزایش هزینه، سود را صفر می‌کند."):"CM ratio is very thin ("+fmt(cm*100,1)+"%) — any cost bump wipes profit.");
+else if(cm*100<20)risks.push("y",fa?("حاشیه سهم کم است ("+fmt(cm*100,1)+"٪) — تغییر کوچک قیمت/هزینه اثر بزرگی دارد."):"CM ratio is low ("+fmt(cm*100,1)+"%) — small moves have big effect.");
+if(margin>0&&mosL<10)risks.push("y",fa?("فاصله تا سربه‌سر کم است (حاشیه امنیت "+fmt(mosL,1)+"٪) — افت کوچک فروش یعنی زیان."):"Close to break-even (safety "+fmt(mosL,1)+"%) — a small dip means losses.");
+var wpg=weightedPriceGrowth(prods,M.pgr);
+var wci=weightedCostInflation(M.fixItems.concat(M.varItems),M.cg);
+var erd=wci-wpg;
+if(erd>=5)risks.push("r",fa?("شکاف تورم بحرانی: رشد قیمت "+fmt(wpg,1)+"٪ در برابر تورم هزینه "+fmt(wci,1)+"٪ — حاشیه هر سال حدود "+fmt(erd,1)+" واحد درصد ذوب می‌شود. رشد قیمت را حداقل "+fmt(wci,1)+"٪ تنظیم کنید."):"Critical inflation gap: prices "+fmt(wpg,1)+"% vs costs "+fmt(wci,1)+"% — margin melts ~"+fmt(erd,1)+"pp/yr. Set price growth to at least "+fmt(wci,1)+"%.");
+else if(erd>=2)risks.push("y",fa?("تورم هزینه از رشد قیمت جلوتر است ("+fmt(wci,1)+"٪ در برابر "+fmt(wpg,1)+"٪) — سال‌های آخر حاشیه نازک‌تر می‌شود."):"Cost inflation outruns price growth ("+fmt(wci,1)+"% vs "+fmt(wpg,1)+"%).");
+if(M.ds>0){var dsc=ebitda1/M.ds;
+if(dsc<1)risks.push("r",fa?("جریان سال اول حتی قسط وام را نمی‌پوشاند (DSCR="+fmt(dsc,2)+"x) — آورده را بیشتر یا دوره وام را طولانی‌تر کنید."):"Year-1 cash does not cover debt service (DSCR="+fmt(dsc,2)+"x).");
+else if(dsc<1.3)risks.push("y",fa?("پوشش قسط وام ضعیف است (DSCR="+fmt(dsc,2)+"x، استاندارد امن ۱٫۳)."):"Debt cover is weak (DSCR="+fmt(dsc,2)+"x, safe standard 1.3).");}
+if(M.worst<0){var worstC=0,cum2=-M.capex;
+for(i=0;i<lastFlows.length;i++){cum2+=lastFlows[i];if(cum2<worstC)worstC=cum2;}
+var minC=(-worstC)-M.capex;if(minC<0)minC=0;
+risks.push("y",fa?("در برخی سال‌ها جریان خالص منفی است (بدترین سال: "+money(M.worst)+") — "+money(minC)+" ذخیره نقدی اضافه پیش‌بینی کنید."):"Some years have negative net flow (worst: "+money(M.worst)+") — reserve "+money(minC)+" extra cash.");}
+if(M.shock<15)risks.push("y",fa?("تحمل افت فروش پایین است: افت بیش از "+fmt(M.shock,1)+"٪ فروش، NPV را منفی می‌کند — قراردادهای منعطف و ذخیره نقدی بچینید."):"Sales-shock tolerance is low: beyond a "+fmt(M.shock,1)+"% drop, NPV turns negative — plan flexible contracts and cash reserves.");
+var cut=costCutFor(M,1,0.85);
+if(M.worst<0&&cut!==null)risks.push("y",fa?("تست استرس: با افت ۱۵٪ فروش، NPV منفی می‌شود — کاهش "+fmt(cut,0)+"٪ کل هزینه‌ها جبرانش می‌کند."):"Stress test: at sales -15%, NPV is negative — a "+fmt(cut,0)+"% cost cut restores it.");
+if(avgPrice<needP_profit-0.005)risks.push("y",fa?("میانگین قیمت از قیمت هدف سود پایین‌تر است (هدف: "+money(needP_profit)+")."):"Avg price sits below the profit-target price (target: "+money(needP_profit)+").");
+if(risks.length===0)risks.push("b",fa?"پرچم ریسک فعالی یافت نشد — سناریوی فروش ۱۵٪- را هم بررسی کنید.":"No active risk flags — still check the Sales -15% case.");
+html+="<div class='pathBox'><b class='t'>"+(fa?"🛡 تحلیل ریسک (از داده‌های فعلی)":"🛡 Risk analysis (from current data)")+"</b>";
+for(i=0;i<risks.length;i+=2){var dot=risks[i]==="r"?"🔴":(risks[i]==="y"?"🟡":"🔵");
+html+="<div style='margin-top:8px;line-height:1.8'>"+dot+" "+risks[i+1]+"</div>";}
+html+="</div>";
+if(window._mc){var mcR=window._mc;
+var mcLine=T("mcLoss")+": <b>"+fmt(mcR.pLoss*100,1)+"٪</b> | "+T("mcMean")+": <b>"+money(mcR.mean)+"</b> | "+T("mcP5")+": <b>"+money(mcR.p5)+"</b> | "+T("mcP95")+": <b>"+money(mcR.p95)+"</b>";
+var mcAdv;
+if(mcR.pLoss<=0.10)mcAdv=fa?"حکم شبیه‌سازی: ریسک زیان پایین است؛ مدل در برابر نوسان‌ها پایدار است.":"Simulation verdict: low loss risk; the model is robust to swings.";
+else if(mcR.pLoss<=0.25)mcAdv=fa?"حکم شبیه‌سازی: قابل قبول، اما ذخیره نقدی و پایش ماهانه الزامی است.":"Simulation verdict: acceptable, but keep cash reserves and monthly monitoring.";
+else if(mcR.pLoss<=0.45)mcAdv=fa?"حکم شبیه‌سازی: پرریسک — پیش از تعهد سرمایه، هزینه‌ها را کاهش و قیمت را اصلاح کنید.":"Simulation verdict: high risk — cut costs and fix pricing before committing capital.";
+else mcAdv=fa?"حکم شبیه‌سازی: احتمال زیان بالاست — بازطراحی مدل توصیه می‌شود.":"Simulation verdict: loss probability is high — redesign recommended.";
+html+="<div class='pathBox'><b class='t'>"+(fa?"🎲 مونت‌کارلو ("+fmt(mcR.N,0)+" اجرا)":"🎲 Monte Carlo ("+fmt(mcR.N,0)+" runs)")+"</b>";
+html+="<div style='margin-top:8px;line-height:1.9'>"+mcLine+"</div>";
+html+="<div style='margin-top:6px;line-height:1.8'>"+mcAdv+"</div></div>";}
+if(window._torn&&window._torn.length){var t1=window._torn[0];
+var t1s=Math.abs(t1.hi-t1.lo);
+html+="<div class='pathBox'><b class='t'>"+(fa?"🌪 حساسیت (تورنادو)":"🌪 Sensitivity (tornado)")+"</b>";
+var line1=(fa?"حساس‌ترین اهرم: «"+esc(t1.n)+"» — نوسان ±۱۰٪ آن NPV را تا "+money(t1s)+" جابه‌جا می‌کند؛ مدیریت همین متغیر بیشترین بازده را دارد.":"Top lever: '"+esc(t1.n)+"' — a ±10% swing moves NPV by up to "+money(t1s)+"; managing it yields the most.");
+html+="<div style='margin-top:8px;line-height:1.8'>"+line1+"</div>";
+if(window._torn.length>1){var t2=window._torn[1];
+var t2s=Math.abs(t2.hi-t2.lo);
+var line2=(fa?"اهرم بعدی: «"+esc(t2.n)+"» (جابه‌جایی "+money(t2s)+").":"Next lever: '"+esc(t2.n)+"' (swing "+money(t2s)+").");
+html+="<div style='margin-top:4px;line-height:1.8'>"+line2+"</div>";}
+html+="</div>";}
+var chips=[
+{p:"1",q:"0.85",c:"1",lb:fa?"فروش ۱۵٪-":"Sales -15%"},
+{p:"1",q:"1.15",c:"1",lb:fa?"فروش ۱۵٪+":"Sales +15%"},
+{p:"1.05",q:"1",c:"1",lb:fa?"قیمت ۵٪+":"Price +5%"},
+{p:"1.1",q:"1",c:"1",lb:fa?"قیمت ۱۰٪+":"Price +10%"},
+{p:"1",q:"1",c:"0.9",lb:fa?"هزینه ۱۰٪-":"Costs -10%"},
+{p:"1",q:"1",c:"1.15",lb:fa?"هزینه ۱۵٪+":"Costs +15%"}];
+html+="<div class='pathBox'><b class='t'>"+(fa?"🧪 تحلیل تعاملی سناریو (ورودی‌ها تغییر نمی‌کنند)":"🧪 Interactive what-if (inputs stay unchanged)")+"</b><div class='chips'>";
+for(i=0;i<chips.length;i++){html+="<button type='button' class='wchip' data-p='"+chips[i].p+"' data-q='"+chips[i].q+"' data-c='"+chips[i].c+"'>"+chips[i].lb+"</button>";}
+html+="</div><div id='wiRes' class='avgbox'>"+(fa?"روی یک گزینه کلیک کنید تا NPV و سود ماهانه همان سناریو نمایش داده شود.":"Click a scenario to see its NPV and monthly profit instantly.")+"</div></div>";
+var plan=[];
+if(erd>0.5)plan.push(fa?("رشد سالانه قیمت را حداقل "+fmt(wci,1)+"٪ تنظیم کنید (برابر تورم موزون هزینه‌ها)."):"Set annual price growth to at least "+fmt(wci,1)+"% (equal to weighted cost inflation).");
+if(topS>=50)plan.push(fa?("سهم «"+esc(topN)+"» را با افزودن حداقل یک محصول جدید به زیر ۵۰٪ برسانید (امروز: "+fmt(topS,1)+"٪)."):"Bring '"+esc(topN)+"' below 50% by adding a new product (today: "+fmt(topS,1)+"%).");
+if(window._mc&&window._mc.pLoss>0.25){var cut2=costCutFor(M,1,0.85);
+var pl1=(fa?"شبیه‌سازی احتمال زیان "+fmt(window._mc.pLoss*100,0)+"٪ نشان می‌دهد — ":"Simulation shows "+fmt(window._mc.pLoss*100,0)+"% loss chance — ");
+if(cut2!==null)pl1+=(fa?("حداقل "+fmt(cut2,0)+"٪ کاهش هزینه یا معادل‌ آن افزایش قیمت را هدف بگذارید."):"target at least a "+fmt(cut2,0)+"% cost cut or an equivalent price increase.");
+else pl1+=(fa?"بازنگری جدی در ساختار هزینه لازم است.":"a serious cost-structure review is needed.");
+plan.push(pl1);}
+if(M.worst<0&&cut!==null)plan.push(fa?(fmt(cut,0)+"٪ کاهش کل هزینه‌ها را هدف بگیرید تا سناریوی فروش ۱۵٪- نیز سربه‌سر بماند."):"Target a "+fmt(cut,0)+"% cut in total costs so the sales -15% case also survives.");
+if(M.shock<20)plan.push(fa?("برنامه مقابله با افت فروش بنویسید: تحمل فعلی فقط "+fmt(M.shock,1)+"٪ است — قرارداد حداقل تضمین‌شده، تنوع محصول و خط اعتباری بچینید."):"Write a sales-dip contingency plan: current tolerance is only "+fmt(M.shock,1)+"% — minimum-guarantee contracts, product variety and a credit line.");
+if(!viable&&found.priceMult)plan.push(fa?("میانگین قیمت را از "+money(avgPrice)+" به "+money(avgPrice*found.priceMult)+" برسانید (مسیر ۱ مشاور)."):"Move avg price from "+money(avgPrice)+" to "+money(avgPrice*found.priceMult)+" (Advisor path 1).");
+if(M.ds>0){var dsc2=ebitda1/M.ds;
+if(dsc2<1.3)plan.push(fa?("ساختار وام را اصلاح کنید: DSCR فعلی "+fmt(dsc2,2)+"x است؛ آورده را بیشتر یا دوره را طولانی‌تر کنید."):"Restructure the loan: current DSCR is "+fmt(dsc2,2)+"x; raise equity or lengthen the term.");}
+if(viable)plan.push(fa?"جریان نقدی را ماهانه پایش و حاشیه امنیت را بالای ۲۰٪ نگه دارید.":"Monitor cash monthly and keep the safety margin above 20%.");
+if(plan.length===0)plan.push(fa?"وضعیت متعادل است — پس‌انداز رشد را در ظرفیت یا محصول جدید سرمایه‌گذاری کنید.":"Position is balanced — reinvest growth savings into capacity or a new product.");
+html+="<div class='pathBox'><b class='t'>"+(fa?"📋 برنامه اقدام پیشنهادی (اولویت‌دار)":"📋 Suggested action plan (prioritized)")+"</b><ol class='plan'>";
+for(i=0;i<plan.length;i++){html+="<li>"+plan[i]+"</li>";}
+html+="</ol></div>";
+var mult=found.priceMult||(needP_practical/Math.max(0.0001,avgPrice));
+if(!(mult>1))mult=1;
+var pt="<div class='pathBox'><table class='flowtable'><thead><tr><th>"+T("bh")[0]+"</th><th>"+T("bh")[1]+"</th><th>"+(fa?"قیمت جدید":"New")+"</th><th>"+(fa?"قیمت عملی":"Practical")+"</th></tr></thead><tbody>";
+var np;
+for(i=0;i<prods.length;i++){np=prods[i].price*mult;
+pt+="<tr><td>"+esc(prods[i].name)+"</td><td>"+money(prods[i].price)+"</td><td>"+money(np)+"</td><td><b>"+money(round99(np))+"</b></td></tr>";}
+pt+="</tbody></table></div>";
+html+=pt;
+html+="<div class='pathBox'>📊 "+(fa?"حاشیه سهم":"CM ratio")+": <b>"+fmt(cm*100,2)+(fa?"٪":"%")+"</b> | "+(fa?"تحمل افت فروش":"Sales-shock tolerance")+": <b>"+fmt(M.shock,1)+(fa?"٪":"%")+"</b></div>";
+if(!viable){
+window._recPriceMult=found.priceMult;window._recQtyMult=found.qtyMult;window._recBoth=found.both;
+window._recPractical=needP_practical/Math.max(0.0001,avgPrice);
+if(found.priceMult)b+="<button type='button' class='apply' id='a_price'>"+(fa?"اعمال قیمت NPV":"Apply NPV price")+"</button>";
+if(found.qtyMult)b+="<button type='button' class='apply' id='a_qty'>"+(fa?"اعمال حجم NPV":"Apply NPV volume")+"</button>";
+if(found.both)b+="<button type='button' class='apply2' id='a_both'>"+(fa?"اعمال متوازن":"Apply balanced")+"</button>";
+b+="<button type='button' class='apply2' id='a_prac'>"+(fa?"اعمال قیمت عملی .۹۹":"Apply .99 price")+"</button>";
+}else{
+window._recPriceMult=null;window._recQtyMult=null;window._recBoth=null;
+window._recPractical=needP_practical/Math.max(0.0001,avgPrice);
+if(window._recPractical>1){b+="<button type='button' class='apply2' id='a_prac'>"+(fa?"اعمال قیمت هدف":"Apply target price")+"</button>";}
+else{html+="<div class='pathBox'>✅ "+(fa?"قیمت میانگین فعلی به اهداف شما رسیده است.":"Current avg price already meets your targets.")+"</div>";}
+}
+window._advM=M;window._advBase={revM:revM,varM:varM,fixM:fixM};
+box.innerHTML=html;btns.innerHTML=b;bindAdvisorButtons();updateUndo();}
+function bindAdvisorButtons(){var bp=document.getElementById("a_price");
+if(bp)bp.onclick=function(){var m=window._recPriceMult;if(!m)return;applyPriceMult(m,false);};
+var bq=document.getElementById("a_qty");
+if(bq)bq.onclick=function(){var m=window._recQtyMult;if(!m)return;pushUndo();
+var rs=document.querySelectorAll("#prodT tbody tr");var i,inp;
+for(i=0;i<rs.length;i++){inp=rs[i].children[2].querySelector("input");inp.value=fmt(Math.ceil(parseNum(inp.value)*m),0);}
+formatAllInputs();sums();calculate(true);};
+var bb=document.getElementById("a_both");
+if(bb)bb.onclick=function(){var m=window._recBoth;if(!m)return;
+applyPriceMult(m,false);
+var rs2=document.querySelectorAll("#prodT tbody tr");var i2,inp2;
+for(i2=0;i2<rs2.length;i2++){inp2=rs2[i2].children[2].querySelector("input");inp2.value=fmt(Math.ceil(parseNum(inp2.value)*m),0);}
+formatAllInputs();sums();calculate(true);};
+var pr=document.getElementById("a_prac");
+if(pr)pr.onclick=function(){var m=window._recPractical;
+if(!m||!(m>1)){alert(LANG==="fa"?"قیمت فعلی به هدف رسیده است":"Current price already meets the target");return;}
+applyPriceMult(m,true);};
+var wchips=document.querySelectorAll(".wchip"),wi;
+for(wi=0;wi<wchips.length;wi++){wchips[wi].onclick=function(){
+var p=parseFloat(this.getAttribute("data-p")),q=parseFloat(this.getAttribute("data-q")),c=parseFloat(this.getAttribute("data-c"));
+var M2=window._advM,B=window._advBase,res=document.getElementById("wiRes");
+if(!M2||!B||!res)return;
+var n=npvFrom(M2,p,q,c);
+var prof=(B.revM*p*q)-(B.varM*q*c)-(B.fixM*c);
+var d=n-M2.npv0;
+var dl=(d>=0?"+":"")+money(d);
+res.innerHTML="NPV: <b class='"+(n>=0?"gd":"bd")+"'>"+money(n)+"</b> ("+dl+") &nbsp;|&nbsp; "+(LANG==="fa"?"سود ماهانه":"Profit/mo")+": <b class='"+(prof>=0?"gd":"bd")+"'>"+money(prof)+"</b> "+(n>0?"✓":"✗");};}}
+function applyPriceMult(m,practical){pushUndo();var rs=document.querySelectorAll("#prodT tbody tr");var i,inp,v;
+for(i=0;i<rs.length;i++){inp=rs[i].children[1].querySelector("input");v=parseNum(inp.value)*m;if(practical)v=round99(v);inp.value=fmt(v,DEC);}
+formatAllInputs();sums();calculate(true);}
+function drawBars(f){var c=document.getElementById("ch1"),x=c.getContext("2d");c.width=760;c.height=200;x.clearRect(0,0,760,200);
+if(!f.length){x.fillStyle="#94a3b8";x.fillText("No data",20,100);return;}
+var mx=Math.max.apply(null,f.concat([0])),mn=Math.min.apply(null,f.concat([0])),rg=(mx-mn)||1;
+var zx=175-(0-mn)/rg*150;
+var i,bx,bw,h;
+for(i=0;i<f.length;i++){bx=30+i*710/f.length;bw=Math.max(20,710/f.length*0.5);h=Math.abs(f[i])/rg*150;
+x.fillStyle=f[i]>=0?"#22c55e":"#ef4444";x.fillRect(bx,f[i]>=0?zx-h:zx,bw,h);
+x.textAlign="center";x.fillStyle="#e2e8f0";x.font="11px sans-serif";
+x.fillText(LANG==="fa"?fmt(f[i],0):Math.round(f[i]).toLocaleString("en-US"),bx+bw/2,f[i]>=0?zx-h-4:zx+h+12);
+x.fillStyle="#94a3b8";x.font="bold 11px sans-serif";
+x.fillText(LANG==="fa"?fmt(i+1,0):"Y"+(i+1),bx+bw/2,195);x.textAlign="start";}
+x.strokeStyle="#475569";x.beginPath();x.moveTo(0,zx);x.lineTo(760,zx);x.stroke();}
+function drawCum(c){var e=document.getElementById("ch2"),x=e.getContext("2d");e.width=760;e.height=150;x.clearRect(0,0,760,150);
+if(!c.length)return;
+var mx=Math.max.apply(null,c.concat([0])),mn=Math.min.apply(null,c.concat([0])),rg=(mx-mn)||1;
+var zy=130-(0-mn)/rg*110;
+x.strokeStyle="#475569";x.lineWidth=1;x.beginPath();x.moveTo(15,zy);x.lineTo(745,zy);x.stroke();
+if(c.length===1){var v=c[0];x.fillStyle=v>=0?"#22c55e":"#ef4444";x.beginPath();x.arc(380,75,6,0,7);x.fill();return;}
+x.strokeStyle="#38bdf8";x.lineWidth=2.5;x.beginPath();
+var i,px,py,lx=0,ly=0;
+for(i=0;i<c.length;i++){px=20+i*720/((c.length-1)||1);py=130-(c[i]-mn)/rg*110;
+if(i===0)x.moveTo(px,py);else x.lineTo(px,py);lx=px;ly=py;}
+x.stroke();x.fillStyle="#38bdf8";x.beginPath();x.arc(lx,ly,4,0,7);x.fill();
+x.textAlign="center";x.fillStyle="#e2e8f0";x.font="11px sans-serif";
+x.fillText(LANG==="fa"?fmt(c[c.length-1],0):Math.round(c[c.length-1]).toLocaleString("en-US"),Math.min(730,Math.max(30,lx)),Math.max(12,ly-8));
+x.textAlign="start";}
+function collectData(){function rows(id){var a=[];var rs=document.querySelectorAll("#"+id+" tbody tr");var i,ins;
+for(i=0;i<rs.length;i++){ins=rs[i].querySelectorAll("input");
+if(ins.length>=2){var o={name:ins[0].value,value:parseNum(ins[1].value)};
+if(ins.length>=3&&ins[2].value.trim()!=="")o.r=clampNum(ins[2].value,0,200);
+a.push(o);}}return a;}
+var prods=[];var rs=document.querySelectorAll("#prodT tbody tr");var i,ins;
+for(i=0;i<rs.length;i++){ins=rs[i].querySelectorAll("input");if(ins.length>=4){var o={name:ins[0].value,price:parseNum(ins[1].value),units:parseNum(ins[2].value)};
+if(ins[3].value&&ins[3].value.trim()!=="")o.r=clampNum(ins[3].value,-50,200);
+prods.push(o);}}
+return{app:"viability-v141",biz:bizName(),lang:LANG,cur:CUR,dec:DEC,pi:perInflOn(),pg:priceMode(),pgv:gv("pgGlobal"),capex:rows("capexT"),opex:rows("opexT"),varCosts:rows("varT"),products:prods,settings:{equityPct:gv("equityPct"),loanRate:gv("loanRate"),years:gv("years"),disc:gv("disc"),growth:gv("growth"),cgrow:gv("cgrow"),tax:gv("tax"),wcp:gv("wcp"),targetProfit:gv("targetProfit"),targetMargin:gv("targetMargin")}};}
+function saveProject(){var txt=HEAD+NL+JSON.stringify(collectData(),null,2);var fname=safeName()+".json";
+if(window.showSaveFilePicker){
+window.showSaveFilePicker({suggestedName:fname,types:[{description:"JSON",accept:{"application/json":[".json"]}}]})
+.then(function(h){return h.createWritable().then(function(w){return w.write(txt).then(function(){return w.close();});});})
+.then(function(){alert(LANG==="fa"?"ذخیره شد":"Saved");})
+.catch(function(e){if(e&&e.name!=="AbortError")fallbackSave(txt,fname);});
+}else{fallbackSave(txt,fname);}}
+function fallbackSave(txt,fname){var a=document.createElement("a");
+a.href=URL.createObjectURL(new Blob([txt],{type:"application/json"}));a.download=fname;
+document.body.appendChild(a);a.click();
+setTimeout(function(){URL.revokeObjectURL(a.href);try{document.body.removeChild(a);}catch(e){}},1000);}
+function applyData(d){if(typeof d==="string")d=stripHead(d);
+if(typeof d==="string"){try{d=JSON.parse(d);}catch(e){return;}}
+if(!d||typeof d!=="object")return;
+if(d.biz!==undefined)document.getElementById("bizName").value=String(d.biz).slice(0,80);
+if(d.cur!==undefined){CUR=d.cur;document.getElementById("curSel").value=CUR;}
+if(d.dec!==undefined){DEC=parseInt(d.dec)===0?0:2;document.getElementById("decSel").value=String(DEC);}
+if(d.pi!==undefined){document.getElementById("perInfl").checked=!!d.pi;}
+if(d.pg==="p"){document.getElementById("pgP").checked=true;}else if(d.pg==="g"){document.getElementById("pgG").checked=true;}
+if(d.pgv!==undefined&&d.pgv!==null)document.getElementById("pgGlobal").value=String(d.pgv);
+togglePerInfl();togglePgMode();
+var bodies=document.querySelectorAll("tbody"),b;
+for(b=0;b<bodies.length;b++){bodies[b].innerHTML="";}
+if(d.capex){var i1;for(i1=0;i1<d.capex.length;i1++){addRow("capexT");var tr1=lastRow("capexT");if(tr1){tr1.children[0].querySelector("input").value=String(d.capex[i1].name||"").slice(0,60);tr1.children[1].querySelector("input").value=fmt(d.capex[i1].value||0,DEC);}}}
+if(d.opex){var i2;for(i2=0;i2<d.opex.length;i2++){addRow("opexT");var tr2=lastRow("opexT");if(tr2){tr2.children[0].querySelector("input").value=String(d.opex[i2].name||"").slice(0,60);tr2.children[1].querySelector("input").value=fmt(d.opex[i2].value||0,DEC);var iin2=tr2.children[2]?tr2.children[2].querySelector("input"):null;if(iin2&&d.opex[i2].r!==undefined&&d.opex[i2].r!==null)iin2.value=fmt(d.opex[i2].r,DEC);}}}
+var vlist=d.varCosts||d.var||[];
+if(vlist){var i3;for(i3=0;i3<vlist.length;i3++){addRow("varT");var tr3=lastRow("varT");if(tr3){tr3.children[0].querySelector("input").value=String(vlist[i3].name||"").slice(0,60);tr3.children[1].querySelector("input").value=fmt(vlist[i3].value||0,DEC);var iin3=tr3.children[2]?tr3.children[2].querySelector("input"):null;if(iin3&&vlist[i3].r!==undefined&&vlist[i3].r!==null)iin3.value=fmt(vlist[i3].r,DEC);}}}
+if(d.products){var i4,tr4;
+for(i4=0;i4<d.products.length;i4++){tr4=addProduct(String(d.products[i4].name||"").slice(0,60),d.products[i4].price||0,d.products[i4].units||0);
+if(tr4&&d.products[i4].r!==undefined&&d.products[i4].r!==null){var ig4=tr4.children[3]?tr4.children[3].querySelector("input"):null;if(ig4)ig4.value=fmt(d.products[i4].r,DEC);}}}
+if(d.settings){for(var k in d.settings){var el=document.getElementById(k);if(el)el.value=fmt(d.settings[k],el.dataset&&el.dataset.int==="1"?0:DEC);}}
+hasCalculated=false;
+if(d.lang)setLang(d.lang);else{refreshBiz();formatAllInputs();sums();}
+calculate(true);}
+function resetAll(){if(!confirm(LANG==="fa"?"همه ورودی‌ها پاک شود؟":"Clear all?"))return;
+var bodies=document.querySelectorAll("tbody"),b;
+for(b=0;b<bodies.length;b++){bodies[b].innerHTML="";}
+addRow("capexT");addRow("opexT");addRow("varT");addProduct("Product A",25,600);addProduct("Product B",40,200);
+document.getElementById("bizName").value="";refreshBiz();
+var defs={equityPct:100,loanRate:12,years:5,disc:15,growth:10,cgrow:5,tax:0,wcp:5,targetProfit:2000,targetMargin:30};
+for(var k in defs){var el=document.getElementById(k);if(el)el.value=String(defs[k]);}
+document.getElementById("pgGlobal").value="0";
+document.getElementById("pgG").checked=true;togglePgMode();
+CUR="$";document.getElementById("curSel").value="$";
+DEC=2;document.getElementById("decSel").value="2";
+document.getElementById("autoChk").checked=true;
+document.getElementById("perInfl").checked=false;togglePerInfl();
+undoStack=[];updateUndo();
+hasCalculated=false;lastFlows=[];lastRows=[];lastKPIs=null;
+window._mc=null;window._torn=null;
+clearOutputs();formatAllInputs();sums();}
+document.getElementById("bEN").addEventListener("click",function(){setLang("en");});
+document.getElementById("bFA").addEventListener("click",function(){setLang("fa");});
+document.getElementById("bizName").addEventListener("input",function(){refreshBiz();scheduleRecalc();});
+document.getElementById("curSel").addEventListener("change",function(){CUR=this.value;sums();if(hasCalculated)calculate(true);});
+document.getElementById("decSel").addEventListener("change",function(){DEC=parseInt(this.value)===0?0:2;formatAllInputs();sums();if(hasCalculated)calculate(true);});
+document.getElementById("perInfl").addEventListener("change",togglePerInfl);
+document.getElementById("pgG").addEventListener("change",togglePgMode);
+document.getElementById("pgP").addEventListener("change",togglePgMode);
+document.getElementById("mcN").addEventListener("change",function(){if(hasCalculated)calculate(true);});
+document.getElementById("b_mc").addEventListener("click",function(){if(hasCalculated)calculate(true);});
+document.getElementById("b_share").addEventListener("click",doShare);
+document.getElementById("b_undo").addEventListener("click",doUndo);
+document.getElementById("b_addC").addEventListener("click",function(){addRow("capexT");});
+document.getElementById("b_addF").addEventListener("click",function(){addRow("opexT");});
+document.getElementById("b_addV").addEventListener("click",function(){addRow("varT");});
+document.getElementById("b_addP").addEventListener("click",function(){addProduct("",0,0);});
+document.getElementById("b_calc").addEventListener("click",function(){calculate(false);});
+document.getElementById("b_demo").addEventListener("click",function(){
+var bodies=document.querySelectorAll("tbody"),b;
+for(b=0;b<bodies.length;b++){bodies[b].innerHTML="";}
+addRow("capexT");var c1=lastRow("capexT");c1.children[0].querySelector("input").value="Machinery";c1.children[1].querySelector("input").value=fmt(20000,DEC);
+addRow("opexT");var o1=lastRow("opexT");o1.children[0].querySelector("input").value="Rent + salaries";o1.children[1].querySelector("input").value=fmt(4200,DEC);
+addRow("varT");var t1=lastRow("varT");if(t1){t1.children[0].querySelector("input").value="Materials";t1.children[1].querySelector("input").value=fmt(2500,DEC);}
+addProduct("Espresso",4,1800);addProduct("Croissant",3,1200);
+document.getElementById("pgGlobal").value=fmt(5,DEC);
+document.getElementById("pgG").checked=true;togglePgMode();
+formatAllInputs();sums();calculate(false);});
+document.getElementById("b_csv").addEventListener("click",function(){
+if(!lastFlows.length){alert(LANG==="fa"?"اول محاسبه کنید":"Calculate first");return;}
+var s=HEAD+(bizName()?" - "+bizName():"")+NL;
+if(lastKPIs){
+s+="CAPEX,"+lastKPIs.capex.toFixed(DEC)+NL;
+s+="NPV,"+(isFinite(lastKPIs.npv)?lastKPIs.npv.toFixed(DEC):"--")+NL;
+s+="IRR_percent,"+(lastKPIs.irr===null?"--":lastKPIs.irr.toFixed(2))+NL;
+s+="MIRR_percent,"+(lastKPIs.mirr===null?"--":lastKPIs.mirr.toFixed(2))+NL;
+s+="PI,"+(lastKPIs.pi===null?"--":lastKPIs.pi.toFixed(2))+NL;
+s+="ROI_percent,"+(lastKPIs.roi===null?"--":lastKPIs.roi.toFixed(2))+NL;
+s+="DSCR,"+(lastKPIs.dscr===null?"--":lastKPIs.dscr.toFixed(2))+NL;
+s+="WorstYearFlow,"+lastKPIs.wflow.toFixed(DEC)+NL;
+s+="SalesShockTolerance_percent,"+(lastKPIs.shock===null?"--":lastKPIs.shock.toFixed(1))+NL;
+s+="MC_LossProbability_percent,"+(lastKPIs.pLoss===null?"--":(lastKPIs.pLoss*100).toFixed(1))+NL;
+s+="Score,"+lastKPIs.score+NL+NL;}
+s+="Year,Revenue,Fixed,Variable,DebtTax,Net,Cumulative"+NL;
+var cc=-((lastKPIs&&lastKPIs.capex)||0),i,r;
+for(i=0;i<lastFlows.length;i++){cc+=lastFlows[i];r=lastRows[i];
+s+=(i+1)+","+r.rev.toFixed(DEC)+","+r.fix.toFixed(DEC)+","+r.vari.toFixed(DEC)+","+r.it.toFixed(DEC)+","+lastFlows[i].toFixed(DEC)+","+cc.toFixed(DEC)+NL;}
+var a=document.createElement("a");
+a.href=URL.createObjectURL(new Blob([BOM+s],{type:"text/csv;charset=utf-8"}));
+a.download=safeName()+"-cashflow.csv";
+document.body.appendChild(a);a.click();
+setTimeout(function(){URL.revokeObjectURL(a.href);try{document.body.removeChild(a);}catch(e2){}},1000);});
+document.getElementById("b_print").addEventListener("click",function(){window.print();});
+document.getElementById("b_save").addEventListener("click",saveProject);
+document.getElementById("b_reset").addEventListener("click",resetAll);
+document.getElementById("b_load").addEventListener("click",function(){document.getElementById("filePick").click();});
+document.getElementById("filePick").addEventListener("change",function(e){
+var f=e.target.files[0];if(!f)return;
+var rd=new FileReader();
+rd.onload=function(){try{var txt=rd.result;applyData(stripHead(String(txt)));}catch(err){alert(LANG==="fa"?"فایل نامعتبر است":"Invalid file");}};
+rd.readAsText(f);e.target.value="";});
+var numIds=["equityPct","loanRate","years","disc","growth","cgrow","tax","wcp","targetProfit","targetMargin","pgGlobal"];
+var ni;for(ni=0;ni<numIds.length;ni++){var nEl=document.getElementById(numIds[ni]);if(nEl)bindNum(nEl);}
+addRow("capexT");addRow("opexT");addRow("varT");addProduct("Product A",25,600);addProduct("Product B",40,200);
+setLang("en");
+</script>
+</body>
+</html>
